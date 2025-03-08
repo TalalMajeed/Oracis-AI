@@ -1,8 +1,4 @@
-Here's an updated and detailed version of the **README** file:
-
----
-
-# Oracis AI
+# Oracis AI - Web Based Platform
 
 ![Logo](/oracis.png)
 
@@ -182,7 +178,3 @@ This project is licensed under the **MIT License**.
 ## ⭐ **Contributing**
 
 Contributions are welcome! Please create a pull request or open an issue to suggest improvements.
-
----
-
-This should make your **README** look more professional and structured! Let me know if you want to adjust anything. 😎
