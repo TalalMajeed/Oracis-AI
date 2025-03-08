@@ -6,7 +6,7 @@ An **AI & Blockchain Powered Platform** for profile evaluation, connecting compa
 
 ---
 
-## 🚀 **Collaborators**
+## **Collaborators**
 
 We are a group of computer science students at **NUST University**:
 
@@ -17,7 +17,7 @@ We are a group of computer science students at **NUST University**:
 
 ---
 
-## 🛠️ **Tech Stack**
+## **Tech Stack**
 
 ### **1. Frontend** – Built with **Next.js** and **AntDesign**
 
@@ -46,41 +46,41 @@ We are a group of computer science students at **NUST University**:
 
 ---
 
-## 🎯 **Main Platform Goals**
+## **Main Platform Goals**
 
-✅ **AI-Based CV Constructor**
+**AI-Based CV Constructor**
 
 - Allows users to create professional CVs with AI-generated suggestions.
 
-✅ **Profile Analyzer**
+**Profile Analyzer**
 
 - Takes input from LinkedIn and other social profiles.
 - Scrapes data using Puppeteer and processes it using AI.
 - Generates a detailed evaluation summary highlighting strengths and improvement areas.
 
-✅ **Employer Panel**
+**Employer Panel**
 
 - Allows employers to post job openings and contract opportunities.
 - AI-powered suggestions for the most suitable candidates.
 
-✅ **AI-Powered Search Engine**
+**AI-Powered Search Engine**
 
 - Provides personalized recommendations for job seekers and employers.
 - Matches profiles based on skills, experience, and job requirements.
 
-✅ **NDA Signing with Blockchain**
+**NDA Signing with Blockchain**
 
 - Smart contracts for secure and verifiable NDA signing.
 - Ensures confidentiality and trust.
 
-✅ **Messaging System**
+**Messaging System**
 
 - Real-time communication between companies and clients.
 - Secure messaging channel for job discussions and contract negotiations.
 
 ---
 
-## 🚧 **Development Status**
+## **Development Status**
 
 - Development Started: **2025**
 - Current Phase: **Active Development**
@@ -88,24 +88,18 @@ We are a group of computer science students at **NUST University**:
 
 ---
 
-## 🏗️ **Setup and Installation**
+## **Setup and Installation**
 
 ### **Frontend Setup**
 
-1. Clone the repository:
+1. Install dependencies:
 
 ```bash
-git clone https://github.com/OracisAI/oracis-frontend.git
-```
-
-2. Install dependencies:
-
-```bash
-cd oracis-frontend
+cd Frontend-Web
 npm install
 ```
 
-3. Start the development server:
+2. Start the development server:
 
 ```bash
 npm run dev
@@ -113,44 +107,32 @@ npm run dev
 
 ### **Backend Setup**
 
-1. Clone the repository:
+1. Install dependencies:
 
 ```bash
-git clone https://github.com/OracisAI/oracis-backend.git
-```
-
-2. Install dependencies:
-
-```bash
-cd oracis-backend
+cd Primary-Server
 npm install
 ```
 
-3. Start the server:
+2. Start the development server:
 
 ```bash
-npm start
+npm run dev
 ```
 
 ### **AI Server Setup**
 
-1. Clone the repository:
+1. Install dependencies:
 
 ```bash
-git clone https://github.com/OracisAI/oracis-ai.git
-```
-
-2. Install dependencies:
-
-```bash
-cd oracis-ai
+cd AI-Server
 pip install -r requirements.txt
 ```
 
-3. Start the server:
+2. Start the server:
 
 ```bash
-uvicorn main:app --reload
+python3 main.py
 ```
 
 ### **Blockchain Setup**
@@ -158,6 +140,7 @@ uvicorn main:app --reload
 1. Compile smart contracts using Truffle:
 
 ```bash
+cd Solidity-Contracts
 truffle compile
 ```
 
@@ -169,12 +152,12 @@ truffle migrate
 
 ---
 
-## 📄 **License**
+## **License**
 
 This project is licensed under the **MIT License**.
 
 ---
 
-## ⭐ **Contributing**
+## **Contributing**
 
 Contributions are welcome! Please create a pull request or open an issue to suggest improvements.
