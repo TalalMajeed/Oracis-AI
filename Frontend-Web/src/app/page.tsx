@@ -1,25 +1,24 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Image from "next/image";
-import Link from "next/link";
 import {
-  FileText,
-  Search,
+  Brain,
   Briefcase,
-  Shield,
-  MessageSquare,
   ChevronRight,
+  Code,
+  Database,
+  FileText,
   Github,
+  Globe,
   Linkedin,
   Mail,
-  PhoneCall,
   MapPin,
-  Database,
-  Brain,
-  Code,
-  Globe,
+  MessageSquare,
+  PhoneCall,
+  Search,
+  Shield,
 } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -31,8 +30,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
+import { Textarea } from "@/components/ui/textarea";
 
 const Home = () => {
   return (
@@ -40,11 +39,11 @@ const Home = () => {
       <div className="flex flex-col min-h-screen bg-background">
         {/* Navbar */}
         <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-          <div className="container flex h-14 items-center">
+          <div className="container max-w-none flex h-14 items-center">
             <div className="flex items-center mr-4">
               <Link href="/" className="flex items-center space-x-2">
                 <Image
-                  src="/oracis.png"
+                  src="/images/logo-square-transparent.png"
                   alt="Oracis Logo"
                   width={32}
                   height={32}
