@@ -1,630 +1,835 @@
 "use client";
 
-import React from "react";
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import {
-  Layout,
-  Button,
-  Typography,
-  Space,
-  Row,
-  Col,
+  FileText,
+  Search,
+  Briefcase,
+  Shield,
+  MessageSquare,
+  ChevronRight,
+  Github,
+  Linkedin,
+  Mail,
+  PhoneCall,
+  MapPin,
+  Database,
+  Brain,
+  Code,
+  Globe,
+} from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+import {
   Card,
-  Divider,
-  Statistic,
-  Avatar,
-  Steps,
-  Carousel,
-} from "antd";
-import {
-  UserOutlined,
-  TeamOutlined,
-  FileTextOutlined,
-  BlockOutlined,
-  RocketOutlined,
-  ArrowRightOutlined,
-  CheckCircleOutlined,
-  GlobalOutlined,
-  LockOutlined,
-} from "@ant-design/icons";
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Separator } from "@/components/ui/separator";
 
-const { Header, Content, Footer } = Layout;
-const { Title, Text, Paragraph } = Typography;
-const { Step } = Steps;
-
-export default function Home() {
+const Home = () => {
   return (
-    <Layout className="layout">
-      <Header
-        style={{
-          position: "fixed",
-          zIndex: 1,
-          width: "100%",
-          padding: "0 50px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
-        <div className="logo" style={{ display: "flex", alignItems: "center" }}>
-          <BlockOutlined
-            style={{ fontSize: "24px", color: "#1890ff", marginRight: "10px" }}
-          />
-          <Title level={3} style={{ color: "white", margin: 0 }}>
-            Oracis AI
-          </Title>
-        </div>
-        <Space>
-          <Button type="text" style={{ color: "white" }}>
-            Home
-          </Button>
-          <Button type="text" style={{ color: "white" }}>
-            Features
-          </Button>
-          <Button type="text" style={{ color: "white" }}>
-            Solutions
-          </Button>
-          <Button type="text" style={{ color: "white" }}>
-            About
-          </Button>
-          <Button type="text" style={{ color: "white" }}>
-            Contact
-          </Button>
-          <Button type="primary" shape="round" icon={<RocketOutlined />}>
-            Get Started
-          </Button>
-        </Space>
-      </Header>
-
-      <Content style={{ padding: "0 50px", marginTop: 64 }}>
-        {/* Hero Section */}
-        <Row
-          gutter={[24, 48]}
-          align="middle"
-          style={{ minHeight: "85vh", padding: "60px 0" }}
-        >
-          <Col xs={24} lg={12}>
-            <Title>
-              Connect, Create, and Contract with
-              <span style={{ color: "#1890ff" }}> Blockchain Technology</span>
-            </Title>
-            <Title level={4} style={{ fontWeight: "normal", marginBottom: 30 }}>
-              Revolutionizing how job seekers and companies connect, with
-              AI-powered profile optimization and secure blockchain contracts.
-            </Title>
-            <Space size="large">
-              <Button
-                type="primary"
-                size="large"
-                shape="round"
-                icon={<RocketOutlined />}
-              >
-                Get Started
-              </Button>
-              <Button size="large" shape="round">
-                Learn More
-              </Button>
-            </Space>
-          </Col>
-          <Col xs={24} lg={12} style={{ textAlign: "center" }}>
-            <img
-              src="/hero-image.svg"
-              alt="Oracis AI Platform"
-              style={{ maxWidth: "100%", height: "auto" }}
-            />
-          </Col>
-        </Row>
-
-        {/* Stats Section */}
-        <div
-          style={{
-            background: "#f8f9fa",
-            padding: "60px 0",
-            margin: "0 -50px",
-          }}
-        >
-          <Row
-            justify="center"
-            style={{ textAlign: "center", padding: "0 50px" }}
-          >
-            <Col span={24}>
-              <Title level={2}>Transforming the Hiring Landscape</Title>
-              <Divider />
-            </Col>
-          </Row>
-          <Row
-            gutter={[48, 48]}
-            justify="center"
-            style={{ padding: "20px 50px" }}
-          >
-            <Col xs={24} sm={12} lg={8}>
-              <Card
-                bordered={false}
-                style={{ textAlign: "center", height: "100%" }}
-              >
-                <Statistic
-                  title="Job Seekers"
-                  value={25000}
-                  prefix={<UserOutlined />}
-                  suffix="+"
+    <main>
+      <div className="flex flex-col min-h-screen bg-background">
+        {/* Navbar */}
+        <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+          <div className="container flex h-14 items-center">
+            <div className="flex items-center mr-4">
+              <Link href="/" className="flex items-center space-x-2">
+                <Image
+                  src="/oracis.png"
+                  alt="Oracis Logo"
+                  width={32}
+                  height={32}
                 />
-                <Paragraph style={{ marginTop: 20 }}>
-                  Active job seekers finding their dream roles through our
-                  platform
-                </Paragraph>
-              </Card>
-            </Col>
-            <Col xs={24} sm={12} lg={8}>
-              <Card
-                bordered={false}
-                style={{ textAlign: "center", height: "100%" }}
-              >
-                <Statistic
-                  title="Companies"
-                  value={1200}
-                  prefix={<TeamOutlined />}
-                  suffix="+"
-                />
-                <Paragraph style={{ marginTop: 20 }}>
-                  Companies sourcing top talent with our AI-powered matching
-                </Paragraph>
-              </Card>
-            </Col>
-            <Col xs={24} sm={12} lg={8}>
-              <Card
-                bordered={false}
-                style={{ textAlign: "center", height: "100%" }}
-              >
-                <Statistic
-                  title="Secure Contracts"
-                  value={18500}
-                  prefix={<FileTextOutlined />}
-                  suffix="+"
-                />
-                <Paragraph style={{ marginTop: 20 }}>
-                  Blockchain-verified contracts executed between parties
-                </Paragraph>
-              </Card>
-            </Col>
-          </Row>
-        </div>
-
-        {/* Main Features Section */}
-        <div style={{ padding: "80px 0" }}>
-          <Row justify="center" style={{ textAlign: "center" }}>
-            <Col span={24}>
-              <Title level={2}>Powerful Features</Title>
-              <Text type="secondary" style={{ fontSize: "18px" }}>
-                Our comprehensive suite of tools for job seekers and employers
-              </Text>
-              <Divider />
-            </Col>
-          </Row>
-
-          <Row gutter={[48, 48]} align="middle" style={{ marginTop: 30 }}>
-            <Col xs={24} lg={12}>
-              <img
-                src="/ai-profile-optimization.svg"
-                alt="AI Profile Optimization"
-                style={{ maxWidth: "100%", height: "auto" }}
-              />
-            </Col>
-            <Col xs={24} lg={12}>
-              <Title level={3}>AI-Powered Profile Optimization</Title>
-              <Paragraph style={{ fontSize: "16px" }}>
-                Our advanced AI analyzes your experience, skills, and job market
-                trends to create standout profiles that get noticed by
-                employers.
-              </Paragraph>
-              <Space
-                direction="vertical"
-                size="middle"
-                style={{ width: "100%" }}
-              >
-                <div style={{ display: "flex", alignItems: "flex-start" }}>
-                  <CheckCircleOutlined
-                    style={{
-                      color: "#1890ff",
-                      fontSize: "18px",
-                      marginTop: "4px",
-                      marginRight: "10px",
-                    }}
-                  />
-                  <div>
-                    <Text strong>Smart Resume Builder</Text>
-                    <Paragraph>
-                      Create tailored resumes for specific industries and roles
-                    </Paragraph>
-                  </div>
-                </div>
-                <div style={{ display: "flex", alignItems: "flex-start" }}>
-                  <CheckCircleOutlined
-                    style={{
-                      color: "#1890ff",
-                      fontSize: "18px",
-                      marginTop: "4px",
-                      marginRight: "10px",
-                    }}
-                  />
-                  <div>
-                    <Text strong>Skill Gap Analysis</Text>
-                    <Paragraph>
-                      Identify and develop skills that make you more competitive
-                    </Paragraph>
-                  </div>
-                </div>
-                <div style={{ display: "flex", alignItems: "flex-start" }}>
-                  <CheckCircleOutlined
-                    style={{
-                      color: "#1890ff",
-                      fontSize: "18px",
-                      marginTop: "4px",
-                      marginRight: "10px",
-                    }}
-                  />
-                  <div>
-                    <Text strong>Keyword Optimization</Text>
-                    <Paragraph>
-                      Enhance visibility in employer searches with strategic
-                      keywords
-                    </Paragraph>
-                  </div>
-                </div>
-              </Space>
-              <Button
-                type="primary"
-                style={{ marginTop: 20 }}
-                icon={<ArrowRightOutlined />}
-              >
-                Explore AI Features
-              </Button>
-            </Col>
-          </Row>
-
-          <Divider style={{ margin: "60px 0" }} />
-
-          <Row gutter={[48, 48]} align="middle">
-            <Col xs={24} lg={{ span: 12, order: 2 }}>
-              <img
-                src="/blockchain-contracts.svg"
-                alt="Blockchain Contracts"
-                style={{ maxWidth: "100%", height: "auto" }}
-              />
-            </Col>
-            <Col xs={24} lg={{ span: 12, order: 1 }}>
-              <Title level={3}>Blockchain-Secured Contracts</Title>
-              <Paragraph style={{ fontSize: "16px" }}>
-                Revolutionize the hiring process with immutable, transparent
-                contracts that create trust between all parties.
-              </Paragraph>
-              <Space
-                direction="vertical"
-                size="middle"
-                style={{ width: "100%" }}
-              >
-                <div style={{ display: "flex", alignItems: "flex-start" }}>
-                  <CheckCircleOutlined
-                    style={{
-                      color: "#1890ff",
-                      fontSize: "18px",
-                      marginTop: "4px",
-                      marginRight: "10px",
-                    }}
-                  />
-                  <div>
-                    <Text strong>Tamper-Proof Agreements</Text>
-                    <Paragraph>
-                      Ensure contract terms remain unchanged and verifiable
-                    </Paragraph>
-                  </div>
-                </div>
-                <div style={{ display: "flex", alignItems: "flex-start" }}>
-                  <CheckCircleOutlined
-                    style={{
-                      color: "#1890ff",
-                      fontSize: "18px",
-                      marginTop: "4px",
-                      marginRight: "10px",
-                    }}
-                  />
-                  <div>
-                    <Text strong>Digital Signatures</Text>
-                    <Paragraph>
-                      Legally binding signatures with cryptographic verification
-                    </Paragraph>
-                  </div>
-                </div>
-                <div style={{ display: "flex", alignItems: "flex-start" }}>
-                  <CheckCircleOutlined
-                    style={{
-                      color: "#1890ff",
-                      fontSize: "18px",
-                      marginTop: "4px",
-                      marginRight: "10px",
-                    }}
-                  />
-                  <div>
-                    <Text strong>Smart Contract Automation</Text>
-                    <Paragraph>
-                      Automate payment schedules and milestone deliverables
-                    </Paragraph>
-                  </div>
-                </div>
-              </Space>
-              <Button
-                type="primary"
-                style={{ marginTop: 20 }}
-                icon={<ArrowRightOutlined />}
-              >
-                Learn About Blockchain
-              </Button>
-            </Col>
-          </Row>
-        </div>
-
-        {/* How It Works Section */}
-        <div
-          style={{
-            background: "#f8f9fa",
-            padding: "80px 0",
-            margin: "0 -50px",
-          }}
-        >
-          <Row
-            justify="center"
-            style={{ textAlign: "center", padding: "0 50px" }}
-          >
-            <Col span={24}>
-              <Title level={2}>How Oracis AI Works</Title>
-              <Text type="secondary" style={{ fontSize: "18px" }}>
-                Your journey to career success in four simple steps
-              </Text>
-              <Divider />
-            </Col>
-          </Row>
-
-          <Row justify="center" style={{ padding: "20px 50px" }}>
-            <Col xs={24} lg={18}>
-              <Steps
-                direction="vertical"
-                current={1}
-                items={[
-                  {
-                    title: "Create Your Profile",
-                    description:
-                      "Sign up and build your professional profile with our AI-powered tools that highlight your strengths.",
-                    icon: <UserOutlined />,
-                  },
-                  {
-                    title: "Optimize with AI",
-                    description:
-                      "Our AI analyzes your profile, suggests improvements, and creates customized CVs for different opportunities.",
-                    icon: <RocketOutlined />,
-                  },
-                  {
-                    title: "Connect with Companies",
-                    description:
-                      "Get matched with companies looking for your specific skills and experience through our intelligent network.",
-                    icon: <TeamOutlined />,
-                  },
-                  {
-                    title: "Secure with Blockchain",
-                    description:
-                      "When you find the right opportunity, finalize agreements with our blockchain contract technology.",
-                    icon: <BlockOutlined />,
-                  },
-                ]}
-              />
-            </Col>
-          </Row>
-        </div>
-
-        {/* Testimonials Section */}
-        <div style={{ padding: "80px 0" }}>
-          <Row justify="center" style={{ textAlign: "center" }}>
-            <Col span={24}>
-              <Title level={2}>Success Stories</Title>
-              <Text type="secondary" style={{ fontSize: "18px" }}>
-                See how Oracis AI has transformed careers and hiring processes
-              </Text>
-              <Divider />
-            </Col>
-          </Row>
-
-          <Carousel autoplay style={{ marginTop: 30 }}>
-            <div>
-              <Card style={{ margin: "20px 50px", padding: "20px" }}>
-                <Row gutter={[24, 24]} align="middle">
-                  <Col xs={24} sm={6} style={{ textAlign: "center" }}>
-                    <Avatar size={100} icon={<UserOutlined />} />
-                    <Title level={4} style={{ marginTop: 10, marginBottom: 0 }}>
-                      Sarah Johnson
-                    </Title>
-                    <Text type="secondary">Software Developer</Text>
-                  </Col>
-                  <Col xs={24} sm={18}>
-                    <Paragraph
-                      style={{ fontSize: "16px", fontStyle: "italic" }}
-                    >
-                      "Oracis AI completely transformed my job search. The AI
-                      profile optimization highlighted skills I didn't know were
-                      valuable, and I secured a position at a top tech company
-                      within two weeks. The blockchain contract gave me
-                      confidence in the employment terms."
-                    </Paragraph>
-                  </Col>
-                </Row>
-              </Card>
+                <span className="font-bold text-xl">Oracis AI</span>
+              </Link>
             </div>
-            <div>
-              <Card style={{ margin: "20px 50px", padding: "20px" }}>
-                <Row gutter={[24, 24]} align="middle">
-                  <Col xs={24} sm={6} style={{ textAlign: "center" }}>
-                    <Avatar size={100} icon={<TeamOutlined />} />
-                    <Title level={4} style={{ marginTop: 10, marginBottom: 0 }}>
-                      Techsphere Inc.
-                    </Title>
-                    <Text type="secondary">Technology Company</Text>
-                  </Col>
-                  <Col xs={24} sm={18}>
-                    <Paragraph
-                      style={{ fontSize: "16px", fontStyle: "italic" }}
-                    >
-                      "As a growing startup, finding the right talent
-                      efficiently is crucial. Oracis AI has reduced our hiring
-                      time by 60% and improved the quality of matches. The
-                      blockchain contracts have streamlined our onboarding
-                      process and built trust with new hires."
-                    </Paragraph>
-                  </Col>
-                </Row>
-              </Card>
-            </div>
-          </Carousel>
-        </div>
-
-        {/* CTA Section */}
-        <div
-          style={{
-            background: "linear-gradient(90deg, #1890ff 0%, #096dd9 100%)",
-            padding: "60px 0",
-            margin: "0 -50px",
-            textAlign: "center",
-            color: "white",
-          }}
-        >
-          <Row justify="center" style={{ padding: "0 50px" }}>
-            <Col xs={24} md={16}>
-              <Title style={{ color: "white" }}>
-                Ready to Transform Your Career Journey?
-              </Title>
-              <Paragraph style={{ fontSize: "18px", marginBottom: 30 }}>
-                Join thousands of professionals and companies revolutionizing
-                how hiring works with AI and blockchain technology.
-              </Paragraph>
-              <Space size="large">
-                <Button
-                  type="primary"
-                  size="large"
-                  style={{
-                    background: "white",
-                    borderColor: "white",
-                    color: "#1890ff",
-                  }}
-                >
-                  Sign Up Now
-                </Button>
-                <Button ghost size="large">
-                  Request Demo
-                </Button>
-              </Space>
-            </Col>
-          </Row>
-        </div>
-      </Content>
-
-      <Footer style={{ textAlign: "center", padding: "50px" }}>
-        <Row gutter={[48, 48]}>
-          <Col xs={24} sm={12} md={6}>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                marginBottom: 20,
-              }}
-            >
-              <BlockOutlined
-                style={{
-                  fontSize: "24px",
-                  color: "#1890ff",
-                  marginRight: "10px",
-                }}
-              />
-              <Title level={4} style={{ margin: 0 }}>
-                Oracis AI
-              </Title>
-            </div>
-            <Paragraph>
-              Revolutionizing career connections with AI and blockchain
-              technology.
-            </Paragraph>
-            <Space>
-              <Button type="text" shape="circle" icon={<GlobalOutlined />} />
-              <Button type="text" shape="circle" icon={<UserOutlined />} />
-              <Button type="text" shape="circle" icon={<TeamOutlined />} />
-            </Space>
-          </Col>
-          <Col xs={24} sm={12} md={6}>
-            <Title level={4}>Features</Title>
-            <Space direction="vertical">
-              <Button type="link" style={{ padding: 0 }}>
-                AI Profile Optimization
-              </Button>
-              <Button type="link" style={{ padding: 0 }}>
-                Smart CV Builder
-              </Button>
-              <Button type="link" style={{ padding: 0 }}>
-                Skill Analysis
-              </Button>
-              <Button type="link" style={{ padding: 0 }}>
-                Blockchain Contracts
-              </Button>
-            </Space>
-          </Col>
-          <Col xs={24} sm={12} md={6}>
-            <Title level={4}>Company</Title>
-            <Space direction="vertical">
-              <Button type="link" style={{ padding: 0 }}>
-                About Us
-              </Button>
-              <Button type="link" style={{ padding: 0 }}>
-                Our Team
-              </Button>
-              <Button type="link" style={{ padding: 0 }}>
-                Careers
-              </Button>
-              <Button type="link" style={{ padding: 0 }}>
+            <nav className="flex items-center space-x-6 text-sm font-medium flex-1 justify-center">
+              <Link
+                href="#about"
+                className="transition-colors hover:text-primary"
+              >
+                About
+              </Link>
+              <Link
+                href="#features"
+                className="transition-colors hover:text-primary"
+              >
+                Features
+              </Link>
+              <Link
+                href="#pricing"
+                className="transition-colors hover:text-primary"
+              >
+                Pricing
+              </Link>
+              <Link
+                href="#contact"
+                className="transition-colors hover:text-primary"
+              >
                 Contact
-              </Button>
-            </Space>
-          </Col>
-          <Col xs={24} sm={12} md={6}>
-            <Title level={4}>Resources</Title>
-            <Space direction="vertical">
-              <Button type="link" style={{ padding: 0 }}>
-                Blog
-              </Button>
-              <Button type="link" style={{ padding: 0 }}>
-                Documentation
-              </Button>
-              <Button type="link" style={{ padding: 0 }}>
-                FAQ
-              </Button>
-              <Button type="link" style={{ padding: 0 }}>
-                Privacy Policy
-              </Button>
-            </Space>
-          </Col>
-        </Row>
-        <Divider />
-        <Row justify="space-between" align="middle">
-          <Col>
-            <Text type="secondary">© 2025 Oracis AI. All rights reserved.</Text>
-          </Col>
-          <Col>
-            <Space>
-              <Button type="link" size="small">
-                Terms
-              </Button>
-              <Button type="link" size="small">
-                Privacy
-              </Button>
-              <Button type="link" size="small">
-                Cookies
-              </Button>
-            </Space>
-          </Col>
-        </Row>
-      </Footer>
-    </Layout>
+              </Link>
+            </nav>
+            <div className="flex items-center space-x-4">
+              <Button variant="outline">Log In</Button>
+              <Button>Sign Up</Button>
+            </div>
+          </div>
+        </header>
+
+        <main className="flex-1">
+          {/* Hero Section (Full Page) */}
+          <section className="relative h-screen flex items-center bg-[var(--primary-color)] text-white">
+            <div className="container mx-auto px-6 flex flex-col lg:flex-row items-center">
+              <div className="lg:w-1/2 flex flex-col items-start space-y-8">
+                <h1 className="text-5xl md:text-6xl font-bold leading-tight">
+                  AI & Blockchain Powered{" "}
+                  <span className="text-[var(--secondary-color)]">
+                    Profile Evaluation
+                  </span>
+                </h1>
+                <p className="text-xl opacity-80">
+                  Connecting companies and individuals seeking professional
+                  opportunities through intelligent analysis
+                </p>
+                <div className="flex space-x-4">
+                  <Button
+                    size="lg"
+                    className="bg-[var(--secondary-color)] hover:bg-blue-700"
+                  >
+                    Get Started
+                  </Button>
+                  <Button size="lg" variant="outline">
+                    Learn More
+                  </Button>
+                </div>
+              </div>
+              <div className="lg:w-1/2 mt-12 lg:mt-0 flex justify-center">
+                <div className="w-full max-w-md relative">
+                  <Image
+                    src="/oracis.png"
+                    alt="Oracis AI Dashboard"
+                    width={500}
+                    height={400}
+                    className="rounded-lg shadow-xl"
+                  />
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* About Section */}
+          <section id="about" className="py-20 bg-[var(--background-color)]">
+            <div className="container mx-auto px-6">
+              <div className="text-center mb-16">
+                <h2 className="text-3xl font-bold mb-4">About Oracis AI</h2>
+                <p className="text-lg max-w-3xl mx-auto text-gray-600">
+                  We're a team of computer science students from NUST University
+                  building the future of professional networking and opportunity
+                  matching.
+                </p>
+              </div>
+
+              <div className="flex flex-col md:flex-row justify-center gap-8 mt-12">
+                <div className="flex flex-col items-center text-center p-6 bg-white rounded-lg shadow-md">
+                  <Brain
+                    size={48}
+                    className="text-[var(--secondary-color)] mb-4"
+                  />
+                  <h3 className="text-xl font-semibold mb-2">
+                    AI-Powered Analysis
+                  </h3>
+                  <p className="text-gray-600">
+                    Advanced algorithms to evaluate profiles and match skills
+                    with opportunities
+                  </p>
+                </div>
+
+                <div className="flex flex-col items-center text-center p-6 bg-white rounded-lg shadow-md">
+                  <Code
+                    size={48}
+                    className="text-[var(--secondary-color)] mb-4"
+                  />
+                  <h3 className="text-xl font-semibold mb-2">
+                    Blockchain Security
+                  </h3>
+                  <p className="text-gray-600">
+                    Secure NDA signing using smart contracts for confidentiality
+                    and trust
+                  </p>
+                </div>
+
+                <div className="flex flex-col items-center text-center p-6 bg-white rounded-lg shadow-md">
+                  <Database
+                    size={48}
+                    className="text-[var(--secondary-color)] mb-4"
+                  />
+                  <h3 className="text-xl font-semibold mb-2">
+                    Data Optimization
+                  </h3>
+                  <p className="text-gray-600">
+                    Web scraping and data processing for comprehensive profile
+                    analysis
+                  </p>
+                </div>
+
+                <div className="flex flex-col items-center text-center p-6 bg-white rounded-lg shadow-md">
+                  <Globe
+                    size={48}
+                    className="text-[var(--secondary-color)] mb-4"
+                  />
+                  <h3 className="text-xl font-semibold mb-2">
+                    Modern Tech Stack
+                  </h3>
+                  <p className="text-gray-600">
+                    Built with Next.js, Express, FastAPI, and Solidity for
+                    optimal performance
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-16 text-center">
+                <h3 className="text-2xl font-bold mb-6">Our Team</h3>
+                <div className="flex flex-wrap justify-center gap-8">
+                  {[
+                    { name: "Talal Majeed", github: "TalalMajeed" },
+                    { name: "Fozan Mujtaba", github: "fozanmujtaba" },
+                    { name: "Labib Kamran", github: "labibkamran" },
+                    { name: "Syed Abdul Ahad", github: "OnlyAhad13" },
+                  ].map((member, idx) => (
+                    <div key={idx} className="flex flex-col items-center">
+                      <div className="w-20 h-20 rounded-full bg-gray-300 mb-3 flex items-center justify-center">
+                        <span className="text-3xl">
+                          {member.name.charAt(0)}
+                        </span>
+                      </div>
+                      <h4 className="font-medium">{member.name}</h4>
+                      <a
+                        href={`https://github.com/${member.github}`}
+                        className="flex items-center text-sm text-gray-600 hover:text-[var(--secondary-color)]"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Github size={16} className="mr-1" />
+                        {member.github}
+                      </a>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Features Section */}
+          <section id="features" className="py-20">
+            <div className="container mx-auto px-6">
+              <div className="text-center mb-16">
+                <h2 className="text-3xl font-bold mb-4">Platform Features</h2>
+                <p className="text-lg max-w-3xl mx-auto text-gray-600">
+                  Discover how Oracis AI transforms the way professionals
+                  connect with opportunities
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div className="flex">
+                  <div className="mr-4">
+                    <div className="p-3 rounded-full bg-blue-100">
+                      <FileText
+                        size={28}
+                        className="text-[var(--secondary-color)]"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold mb-2">
+                      AI-Based CV Constructor
+                    </h3>
+                    <p className="text-gray-600">
+                      Create professional CVs with AI-generated suggestions
+                      tailored to your career goals and industry standards.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex">
+                  <div className="mr-4">
+                    <div className="p-3 rounded-full bg-blue-100">
+                      <Search
+                        size={28}
+                        className="text-[var(--secondary-color)]"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold mb-2">
+                      Profile Analyzer
+                    </h3>
+                    <p className="text-gray-600">
+                      Comprehensive evaluation of your professional profile with
+                      actionable insights to improve your marketability.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex">
+                  <div className="mr-4">
+                    <div className="p-3 rounded-full bg-blue-100">
+                      <Briefcase
+                        size={28}
+                        className="text-[var(--secondary-color)]"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold mb-2">
+                      Employer Panel
+                    </h3>
+                    <p className="text-gray-600">
+                      Post job openings and receive AI-powered candidate
+                      suggestions based on skill matching algorithms.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex">
+                  <div className="mr-4">
+                    <div className="p-3 rounded-full bg-blue-100">
+                      <Shield
+                        size={28}
+                        className="text-[var(--secondary-color)]"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold mb-2">
+                      NDA Signing with Blockchain
+                    </h3>
+                    <p className="text-gray-600">
+                      Secure and verifiable non-disclosure agreements using
+                      smart contracts on the blockchain.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex">
+                  <div className="mr-4">
+                    <div className="p-3 rounded-full bg-blue-100">
+                      <Search
+                        size={28}
+                        className="text-[var(--secondary-color)]"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold mb-2">
+                      AI-Powered Search Engine
+                    </h3>
+                    <p className="text-gray-600">
+                      Find the perfect opportunities or candidates with our
+                      intelligent matching system.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex">
+                  <div className="mr-4">
+                    <div className="p-3 rounded-full bg-blue-100">
+                      <MessageSquare
+                        size={28}
+                        className="text-[var(--secondary-color)]"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold mb-2">
+                      Messaging System
+                    </h3>
+                    <p className="text-gray-600">
+                      Real-time communication between companies and candidates
+                      in a secure environment.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Pricing Section */}
+          <section id="pricing" className="py-20 bg-[var(--background-color)]">
+            <div className="container mx-auto px-6">
+              <div className="text-center mb-16">
+                <h2 className="text-3xl font-bold mb-4">Simple Pricing</h2>
+                <p className="text-lg max-w-3xl mx-auto text-gray-600">
+                  Choose the plan that works best for your needs
+                </p>
+              </div>
+
+              <div className="flex flex-col lg:flex-row justify-center gap-8">
+                <Card className="w-full max-w-sm">
+                  <CardHeader>
+                    <CardTitle>Basic</CardTitle>
+                    <CardDescription>
+                      For individuals just starting out
+                    </CardDescription>
+                    <div className="mt-4">
+                      <span className="text-4xl font-bold">Free</span>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-2">
+                      <li className="flex items-center">
+                        <ChevronRight
+                          size={16}
+                          className="mr-2 text-[var(--secondary-color)]"
+                        />
+                        Basic profile analysis
+                      </li>
+                      <li className="flex items-center">
+                        <ChevronRight
+                          size={16}
+                          className="mr-2 text-[var(--secondary-color)]"
+                        />
+                        CV builder with templates
+                      </li>
+                      <li className="flex items-center">
+                        <ChevronRight
+                          size={16}
+                          className="mr-2 text-[var(--secondary-color)]"
+                        />
+                        Limited job search
+                      </li>
+                      <li className="flex items-center">
+                        <ChevronRight
+                          size={16}
+                          className="mr-2 text-[var(--secondary-color)]"
+                        />
+                        Community forum access
+                      </li>
+                    </ul>
+                  </CardContent>
+                  <CardFooter>
+                    <Button className="w-full">Get Started</Button>
+                  </CardFooter>
+                </Card>
+
+                <Card className="w-full max-w-sm border-[var(--secondary-color)]">
+                  <CardHeader>
+                    <CardTitle>Professional</CardTitle>
+                    <CardDescription>For active job seekers</CardDescription>
+                    <div className="mt-4">
+                      <span className="text-4xl font-bold">$19</span>
+                      <span className="text-gray-500 ml-1">/month</span>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-2">
+                      <li className="flex items-center">
+                        <ChevronRight
+                          size={16}
+                          className="mr-2 text-[var(--secondary-color)]"
+                        />
+                        Advanced profile analysis
+                      </li>
+                      <li className="flex items-center">
+                        <ChevronRight
+                          size={16}
+                          className="mr-2 text-[var(--secondary-color)]"
+                        />
+                        AI-powered CV recommendations
+                      </li>
+                      <li className="flex items-center">
+                        <ChevronRight
+                          size={16}
+                          className="mr-2 text-[var(--secondary-color)]"
+                        />
+                        Unlimited job search
+                      </li>
+                      <li className="flex items-center">
+                        <ChevronRight
+                          size={16}
+                          className="mr-2 text-[var(--secondary-color)]"
+                        />
+                        Direct messaging (20/month)
+                      </li>
+                      <li className="flex items-center">
+                        <ChevronRight
+                          size={16}
+                          className="mr-2 text-[var(--secondary-color)]"
+                        />
+                        Profile promotion
+                      </li>
+                    </ul>
+                  </CardContent>
+                  <CardFooter>
+                    <Button className="w-full bg-[var(--secondary-color)] hover:bg-blue-700">
+                      Get Started
+                    </Button>
+                  </CardFooter>
+                </Card>
+
+                <Card className="w-full max-w-sm">
+                  <CardHeader>
+                    <CardTitle>Enterprise</CardTitle>
+                    <CardDescription>
+                      For companies and businesses
+                    </CardDescription>
+                    <div className="mt-4">
+                      <span className="text-4xl font-bold">$99</span>
+                      <span className="text-gray-500 ml-1">/month</span>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-2">
+                      <li className="flex items-center">
+                        <ChevronRight
+                          size={16}
+                          className="mr-2 text-[var(--secondary-color)]"
+                        />
+                        Full employer dashboard
+                      </li>
+                      <li className="flex items-center">
+                        <ChevronRight
+                          size={16}
+                          className="mr-2 text-[var(--secondary-color)]"
+                        />
+                        AI candidate matching
+                      </li>
+                      <li className="flex items-center">
+                        <ChevronRight
+                          size={16}
+                          className="mr-2 text-[var(--secondary-color)]"
+                        />
+                        Unlimited job postings
+                      </li>
+                      <li className="flex items-center">
+                        <ChevronRight
+                          size={16}
+                          className="mr-2 text-[var(--secondary-color)]"
+                        />
+                        Blockchain NDA signing
+                      </li>
+                      <li className="flex items-center">
+                        <ChevronRight
+                          size={16}
+                          className="mr-2 text-[var(--secondary-color)]"
+                        />
+                        Dedicated support
+                      </li>
+                      <li className="flex items-center">
+                        <ChevronRight
+                          size={16}
+                          className="mr-2 text-[var(--secondary-color)]"
+                        />
+                        Analytics dashboard
+                      </li>
+                    </ul>
+                  </CardContent>
+                  <CardFooter>
+                    <Button className="w-full">Contact Sales</Button>
+                  </CardFooter>
+                </Card>
+              </div>
+            </div>
+          </section>
+
+          {/* Contact Form Section */}
+          <section id="contact" className="py-20">
+            <div className="container mx-auto px-6">
+              <div className="text-center mb-16">
+                <h2 className="text-3xl font-bold mb-4">Get In Touch</h2>
+                <p className="text-lg max-w-3xl mx-auto text-gray-600">
+                  Have questions? We're here to help you get started with Oracis
+                  AI
+                </p>
+              </div>
+
+              <div className="flex flex-col md:flex-row gap-12">
+                {/* Contact Form */}
+                <div className="flex-1">
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Send us a message</CardTitle>
+                      <CardDescription>
+                        Fill out the form below and we'll get back to you as
+                        soon as possible.
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <form className="space-y-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div className="space-y-2">
+                            <label
+                              htmlFor="name"
+                              className="text-sm font-medium"
+                            >
+                              Full Name
+                            </label>
+                            <Input id="name" placeholder="John Doe" />
+                          </div>
+                          <div className="space-y-2">
+                            <label
+                              htmlFor="email"
+                              className="text-sm font-medium"
+                            >
+                              Email Address
+                            </label>
+                            <Input
+                              id="email"
+                              type="email"
+                              placeholder="john@example.com"
+                            />
+                          </div>
+                        </div>
+                        <div className="space-y-2">
+                          <label
+                            htmlFor="subject"
+                            className="text-sm font-medium"
+                          >
+                            Subject
+                          </label>
+                          <Input
+                            id="subject"
+                            placeholder="How can we help you?"
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <label
+                            htmlFor="message"
+                            className="text-sm font-medium"
+                          >
+                            Message
+                          </label>
+                          <Textarea
+                            id="message"
+                            placeholder="Tell us more about your inquiry..."
+                            rows={5}
+                          />
+                        </div>
+                      </form>
+                    </CardContent>
+                    <CardFooter>
+                      <Button className="w-full">Send Message</Button>
+                    </CardFooter>
+                  </Card>
+                </div>
+
+                {/* Contact Information */}
+                <div className="flex-1">
+                  <div className="h-full flex flex-col justify-between">
+                    <div>
+                      <h3 className="text-2xl font-bold mb-6">
+                        Contact Information
+                      </h3>
+                      <div className="space-y-6">
+                        <div className="flex items-start">
+                          <MapPin
+                            size={24}
+                            className="mt-1 mr-4 text-[var(--secondary-color)]"
+                          />
+                          <div>
+                            <h4 className="font-medium mb-1">Location</h4>
+                            <p className="text-gray-600">
+                              NUST University, H-12, Islamabad, Pakistan
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="flex items-start">
+                          <Mail
+                            size={24}
+                            className="mt-1 mr-4 text-[var(--secondary-color)]"
+                          />
+                          <div>
+                            <h4 className="font-medium mb-1">Email</h4>
+                            <a
+                              href="mailto:info@oracisai.com"
+                              className="text-gray-600 hover:text-[var(--secondary-color)]"
+                            >
+                              info@oracisai.com
+                            </a>
+                          </div>
+                        </div>
+
+                        <div className="flex items-start">
+                          <PhoneCall
+                            size={24}
+                            className="mt-1 mr-4 text-[var(--secondary-color)]"
+                          />
+                          <div>
+                            <h4 className="font-medium mb-1">Phone</h4>
+                            <a
+                              href="tel:+923001234567"
+                              className="text-gray-600 hover:text-[var(--secondary-color)]"
+                            >
+                              +92 300 123 4567
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="mt-12">
+                      <h4 className="font-medium mb-4">Follow us</h4>
+                      <div className="flex space-x-4">
+                        <a
+                          href="#"
+                          className="p-2 bg-gray-100 rounded-full hover:bg-[var(--secondary-color)] hover:text-white transition-colors"
+                        >
+                          <Github size={20} />
+                        </a>
+                        <a
+                          href="#"
+                          className="p-2 bg-gray-100 rounded-full hover:bg-[var(--secondary-color)] hover:text-white transition-colors"
+                        >
+                          <Linkedin size={20} />
+                        </a>
+                        <a
+                          href="#"
+                          className="p-2 bg-gray-100 rounded-full hover:bg-[var(--secondary-color)] hover:text-white transition-colors"
+                        >
+                          <Mail size={20} />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+
+        {/* Footer */}
+        <footer className="bg-[var(--primary-color)] text-white py-12">
+          <div className="container mx-auto px-6">
+            <div className="flex flex-col md:flex-row justify-between">
+              <div className="mb-8 md:mb-0">
+                <div className="flex items-center space-x-2 mb-4">
+                  <Image
+                    src="/oracis.png"
+                    alt="Oracis Logo"
+                    width={32}
+                    height={32}
+                  />
+                  <span className="font-bold text-xl">Oracis AI</span>
+                </div>
+                <p className="max-w-md text-gray-300">
+                  AI & Blockchain Powered Platform for profile evaluation,
+                  connecting companies and individuals seeking professional
+                  opportunities.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
+                <div>
+                  <h4 className="font-medium text-lg mb-4">Platform</h4>
+                  <ul className="space-y-2">
+                    <li>
+                      <Link href="#" className="text-gray-300 hover:text-white">
+                        CV Builder
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="#" className="text-gray-300 hover:text-white">
+                        Profile Analysis
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="#" className="text-gray-300 hover:text-white">
+                        Job Matching
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="#" className="text-gray-300 hover:text-white">
+                        Smart Contracts
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="font-medium text-lg mb-4">Company</h4>
+                  <ul className="space-y-2">
+                    <li>
+                      <Link
+                        href="#about"
+                        className="text-gray-300 hover:text-white"
+                      >
+                        About Us
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="#" className="text-gray-300 hover:text-white">
+                        Blog
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="#" className="text-gray-300 hover:text-white">
+                        Careers
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="#contact"
+                        className="text-gray-300 hover:text-white"
+                      >
+                        Contact
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="font-medium text-lg mb-4">Legal</h4>
+                  <ul className="space-y-2">
+                    <li>
+                      <Link href="#" className="text-gray-300 hover:text-white">
+                        Privacy Policy
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="#" className="text-gray-300 hover:text-white">
+                        Terms of Service
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="#" className="text-gray-300 hover:text-white">
+                        Cookie Policy
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <Separator className="my-8 bg-gray-700" />
+
+            <div className="flex flex-col md:flex-row justify-between items-center">
+              <p className="text-gray-400">
+                © 2025 Oracis AI. All rights reserved.
+              </p>
+              <div className="flex space-x-4 mt-4 md:mt-0">
+                <a href="#" className="text-gray-400 hover:text-white">
+                  <Github size={20} />
+                </a>
+                <a href="#" className="text-gray-400 hover:text-white">
+                  <Linkedin size={20} />
+                </a>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </main>
   );
-}
+};
+
+export default Home;
