@@ -203,8 +203,8 @@ const Home = () => {
                     { name: "Fozan Mujtaba", github: "fozanmujtaba" },
                     { name: "Labib Kamran", github: "labibkamran" },
                     { name: "Syed Abdul Ahad", github: "OnlyAhad13" },
-                  ].map((member, idx) => (
-                    <div key={idx} className="flex flex-col items-center">
+                  ].map((member) => (
+                    <div key={member.github} className="flex flex-col items-center">
                       <div className="w-20 h-20 rounded-full bg-gray-300 mb-3 flex items-center justify-center">
                         <span className="text-3xl">
                           {member.name.charAt(0)}
@@ -372,8 +372,8 @@ const Home = () => {
                 </p>
               </div>
 
-              <div className="flex flex-col lg:flex-row justify-center gap-8">
-                <Card className="w-full max-w-sm">
+              <div className="flex flex-col lg:flex-row justify-center gap-8 items-stretch">
+                <Card className="w-full max-w-sm flex flex-col justify-between">
                   <CardHeader>
                     <CardTitle>Basic</CardTitle>
                     <CardDescription>
@@ -420,7 +420,7 @@ const Home = () => {
                   </CardFooter>
                 </Card>
 
-                <Card className="w-full max-w-sm border-[var(--secondary-color)]">
+                <Card className="w-full max-w-sm flex flex-col justify-between border-[var(--secondary-color)]">
                   <CardHeader>
                     <CardTitle>Professional</CardTitle>
                     <CardDescription>For active job seekers</CardDescription>
@@ -475,7 +475,7 @@ const Home = () => {
                   </CardFooter>
                 </Card>
 
-                <Card className="w-full max-w-sm">
+                <Card className="w-full max-w-sm flex flex-col justify-between">
                   <CardHeader>
                     <CardTitle>Enterprise</CardTitle>
                     <CardDescription>
