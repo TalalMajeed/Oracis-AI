@@ -78,8 +78,17 @@ const Home = () => {
               </Link>
             </nav>
             <div className="flex items-center space-x-4">
-              <Button variant="outline">Log In</Button>
-              <Button>Sign Up</Button>
+              <Button 
+                variant="outline" 
+                className="transition duration-200 hover:bg-gray-100 cursor-pointer"
+              >
+                Log In
+              </Button>
+              <Button 
+                className="transition duration-200 hover:bg-blue-600 cursor-pointer"
+              >
+                Sign Up
+              </Button>
             </div>
           </div>
         </header>
@@ -106,7 +115,11 @@ const Home = () => {
                   >
                     Get Started
                   </Button>
-                  <Button size="lg" variant="outline">
+                  <Button 
+                    size="lg" 
+                    variant="outline" 
+                    className="bg-blue-900 text-white hover:bg-blue-800 transition-colors duration-200"
+                  >
                     Learn More
                   </Button>
                 </div>
