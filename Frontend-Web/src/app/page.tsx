@@ -124,10 +124,10 @@ const Home = () => {
                   </Button>
                 </div>
               </div>
-              <div className="lg:w-1/2 mt-12 lg:mt-0 flex justify-center">
+              <div className="lg:w-1/2 mt-12 lg:mt-0 flex justify-end">
                 <div className="w-full max-w-md relative">
                   <Image
-                    src="/oracis.png"
+                    src="/images/img1.jpg"
                     alt="Oracis AI Dashboard"
                     width={500}
                     height={400}
@@ -726,7 +726,7 @@ const Home = () => {
               <div className="mb-8 md:mb-0">
                 <div className="flex items-center space-x-2 mb-4">
                   <Image
-                    src="/oracis.png"
+                    src="/images/logo-square-transparent.png"
                     alt="Oracis Logo"
                     width={32}
                     height={32}
