@@ -58,7 +58,7 @@ const Login = () => {
   return (
     <div className="flex flex-col min-h-screen bg-background">
       {/* Navbar */}
-      <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-[#001230] text-white backdrop-blur">
         <div className="container max-w-none flex h-14 items-center px-[30px]">
           <div className="flex items-center mr-4">
             <Link href="/" className="flex items-center space-x-2">
@@ -75,7 +75,7 @@ const Login = () => {
           <div className="flex items-center space-x-4">
             <Link
               href="/"
-              className="flex items-center text-sm text-gray-600 hover:text-[#1d4ed8]"
+              className="flex items-center text-sm text-white hover:text-gray-400"
             >
               <ArrowLeft size={16} className="mr-1" />
               Back to Home
