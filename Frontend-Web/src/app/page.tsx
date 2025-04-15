@@ -39,7 +39,7 @@ const Home = () => {
       <div className="flex flex-col min-h-screen bg-background">
         {/* Navbar */}
         <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-          <div className="container max-w-none flex h-14 items-center">
+          <div className="container max-w-none flex h-14 items-center px-[30px]">
             <div className="flex items-center mr-4">
               <Link href="/" className="flex items-center space-x-2">
                 <Image
@@ -85,7 +85,7 @@ const Home = () => {
                 Log In
               </Button>
               <Button 
-                className="transition duration-200 hover:bg-blue-600 cursor-pointer"
+                className="transition duration-200 bg-[#001230] text-white hover:bg-[#1d4ed8] cursor-pointer"
               >
                 Sign Up
               </Button>
@@ -118,7 +118,7 @@ const Home = () => {
                   <Button 
                     size="lg" 
                     variant="outline" 
-                    className="bg-blue-900 text-white hover:bg-blue-800 transition-colors duration-200"
+                    className="bg-white text-black hover:bg-gray-300 transition-colors duration-200"
                   >
                     Learn More
                   </Button>
@@ -429,11 +429,11 @@ const Home = () => {
                     </ul>
                   </CardContent>
                   <CardFooter>
-                    <Button className="w-full">Get Started</Button>
+                    <Button className="w-full bg-[#001230] text-white hover:bg-[#1d4ed8] cursor-pointer transition-colors duration-200">Get Started</Button>
                   </CardFooter>
                 </Card>
 
-                <Card className="w-full max-w-sm flex flex-col justify-between border-[var(--secondary-color)]">
+                <Card className="w-full max-w-sm flex flex-col justify-between">
                   <CardHeader>
                     <CardTitle>Professional</CardTitle>
                     <CardDescription>For active job seekers</CardDescription>
@@ -482,7 +482,7 @@ const Home = () => {
                     </ul>
                   </CardContent>
                   <CardFooter>
-                    <Button className="w-full bg-[var(--secondary-color)] hover:bg-blue-700">
+                    <Button className="w-full bg-[#001230] hover:bg-blue-700">
                       Get Started
                     </Button>
                   </CardFooter>
@@ -546,7 +546,7 @@ const Home = () => {
                     </ul>
                   </CardContent>
                   <CardFooter>
-                    <Button className="w-full">Contact Sales</Button>
+                    <Button className="w-full bg-[#001230] hover:bg-blue-700">Contact Sales</Button>
                   </CardFooter>
                 </Card>
               </div>
@@ -585,7 +585,7 @@ const Home = () => {
                             >
                               Full Name
                             </label>
-                            <Input id="name" placeholder="John Doe" />
+                            <Input id="name" placeholder="Your name" />
                           </div>
                           <div className="space-y-2">
                             <label
@@ -597,7 +597,7 @@ const Home = () => {
                             <Input
                               id="email"
                               type="email"
-                              placeholder="john@example.com"
+                              placeholder="example@gmail.com"
                             />
                           </div>
                         </div>
@@ -629,7 +629,7 @@ const Home = () => {
                       </form>
                     </CardContent>
                     <CardFooter>
-                      <Button className="w-full">Send Message</Button>
+                      <Button className="w-full bg-[#001230] text-white hover:bg-[#1d4ed8]">Send Message</Button>
                     </CardFooter>
                   </Card>
                 </div>
@@ -724,15 +724,16 @@ const Home = () => {
           <div className="container mx-auto px-6">
             <div className="flex flex-col md:flex-row justify-between">
               <div className="mb-8 md:mb-0">
-                <div className="flex items-center space-x-2 mb-4">
-                  <Image
-                    src="/images/logo-square-transparent.png"
-                    alt="Oracis Logo"
-                    width={32}
-                    height={32}
-                  />
-                  <span className="font-bold text-xl">Oracis AI</span>
-                </div>
+              <div className="flex items-center space-x-5 mb-4">
+                <Image
+                  src="/images/logo-square-transparent.png"
+                  alt="Oracis Logo"
+                  width={48}   
+                  height={48}  
+                />
+                <span className="font-bold text-3xl">Oracis AI</span>
+              </div>
+
                 <p className="max-w-md text-gray-300">
                   AI & Blockchain Powered Platform for profile evaluation,
                   connecting companies and individuals seeking professional
@@ -740,59 +741,27 @@ const Home = () => {
                 </p>
               </div>
 
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
                   <h4 className="font-medium text-lg mb-4">Platform</h4>
                   <ul className="space-y-2">
                     <li>
-                      <Link href="#" className="text-gray-300 hover:text-white">
-                        CV Builder
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="#" className="text-gray-300 hover:text-white">
-                        Profile Analysis
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="#" className="text-gray-300 hover:text-white">
-                        Job Matching
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="#" className="text-gray-300 hover:text-white">
-                        Smart Contracts
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h4 className="font-medium text-lg mb-4">Company</h4>
-                  <ul className="space-y-2">
-                    <li>
-                      <Link
-                        href="#about"
-                        className="text-gray-300 hover:text-white"
-                      >
+                      <Link href="#about" className="text-gray-300 hover:text-white">
                         About Us
                       </Link>
                     </li>
                     <li>
-                      <Link href="#" className="text-gray-300 hover:text-white">
-                        Blog
+                      <Link href="#features" className="text-gray-300 hover:text-white">
+                        Features
                       </Link>
                     </li>
                     <li>
-                      <Link href="#" className="text-gray-300 hover:text-white">
-                        Careers
+                      <Link href="#pricing" className="text-gray-300 hover:text-white">
+                        Pricing
                       </Link>
                     </li>
                     <li>
-                      <Link
-                        href="#contact"
-                        className="text-gray-300 hover:text-white"
-                      >
+                      <Link href="#contact" className="text-gray-300 hover:text-white">
                         Contact
                       </Link>
                     </li>
