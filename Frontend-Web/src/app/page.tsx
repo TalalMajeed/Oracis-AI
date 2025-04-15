@@ -78,12 +78,14 @@ const Home = () => {
               </Link>
             </nav>
             <div className="flex items-center space-x-4">
+            <Link href="/login">
               <Button 
                 variant="outline" 
-                className="transition duration-200 hover:bg-gray-100 cursor-pointer"
+                className="transition duration-200 hover:bg-gray-300 cursor-pointer"
               >
                 Log In
               </Button>
+            </Link>
               <Button 
                 className="transition duration-200 bg-[#001230] text-white hover:bg-[#1d4ed8] cursor-pointer"
               >
@@ -111,14 +113,14 @@ const Home = () => {
                 <div className="flex space-x-4">
                   <Button
                     size="lg"
-                    className="bg-[var(--secondary-color)] hover:bg-blue-700"
+                    className="bg-[var(--secondary-color)] hover:bg-blue-700 cursor-pointer"
                   >
                     Get Started
                   </Button>
                   <Button 
                     size="lg" 
                     variant="outline" 
-                    className="bg-white text-black hover:bg-gray-300 transition-colors duration-200"
+                    className="bg-white text-black hover:bg-gray-300 transition-colors duration-200 cursor-pointer"
                   >
                     Learn More
                   </Button>
@@ -429,7 +431,7 @@ const Home = () => {
                     </ul>
                   </CardContent>
                   <CardFooter>
-                    <Button className="w-full bg-[#001230] text-white hover:bg-[#1d4ed8] cursor-pointer transition-colors duration-200">Get Started</Button>
+                    <Button className="w-full bg-[#001230] text-white hover:bg-[#1d4ed8] cursor-pointer transition-colors duration-200 cursor-pointer">Get Started</Button>
                   </CardFooter>
                 </Card>
 
@@ -482,7 +484,7 @@ const Home = () => {
                     </ul>
                   </CardContent>
                   <CardFooter>
-                    <Button className="w-full bg-[#001230] hover:bg-blue-700">
+                    <Button className="w-full bg-[#001230] hover:bg-blue-700 cursor-pointer">
                       Get Started
                     </Button>
                   </CardFooter>
@@ -546,7 +548,7 @@ const Home = () => {
                     </ul>
                   </CardContent>
                   <CardFooter>
-                    <Button className="w-full bg-[#001230] hover:bg-blue-700">Contact Sales</Button>
+                    <Button className="w-full bg-[#001230] hover:bg-blue-700 cursor-pointer">Contact Sales</Button>
                   </CardFooter>
                 </Card>
               </div>
@@ -629,7 +631,7 @@ const Home = () => {
                       </form>
                     </CardContent>
                     <CardFooter>
-                      <Button className="w-full bg-[#001230] text-white hover:bg-[#1d4ed8]">Send Message</Button>
+                      <Button className="w-full bg-[#001230] text-white hover:bg-[#1d4ed8] cursor-pointer">Send Message</Button>
                     </CardFooter>
                   </Card>
                 </div>

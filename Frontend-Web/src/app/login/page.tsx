@@ -45,7 +45,8 @@ const Login = () => {
       // For demo purposes, always show error
       setError("Invalid email or password. Please try again.");
       setIsLoading(false);
-    } catch (err) {
+    } catch (err:any) {
+      console.error("Login error:", err);
       setError("An error occurred. Please try again later.");
       setIsLoading(false);
     }
@@ -239,7 +240,7 @@ const Login = () => {
               <p className="text-sm text-gray-600">
                 Don't have an account?{" "}
                 <Link
-                  href="/signup"
+                  href="/role-selector"
                   className="font-medium text-[#1d4ed8] hover:text-blue-500"
                 >
                   Sign up
