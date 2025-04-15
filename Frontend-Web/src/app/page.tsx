@@ -86,11 +86,13 @@ const Home = () => {
                 Log In
               </Button>
             </Link>
+            <Link href="/role-selector">
               <Button 
                 className="transition duration-200 bg-[#001230] text-white hover:bg-[#1d4ed8] cursor-pointer"
               >
                 Sign Up
               </Button>
+              </Link>
             </div>
           </div>
         </header>
@@ -431,7 +433,7 @@ const Home = () => {
                     </ul>
                   </CardContent>
                   <CardFooter>
-                    <Button className="w-full bg-[#001230] text-white hover:bg-[#1d4ed8] cursor-pointer transition-colors duration-200 cursor-pointer">Get Started</Button>
+                    <Button className="w-full bg-[#001230] text-white hover:bg-[#1d4ed8] transition-colors duration-200 cursor-pointer">Get Started</Button>
                   </CardFooter>
                 </Card>
 

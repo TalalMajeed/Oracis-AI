@@ -4,24 +4,38 @@ import { ArrowRight, Building2, Check, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useRef, useState } from "react"; // ✨ added useRef
 
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 
 const RoleSelection = () => {
   const router = useRouter();
-  
+
   const [selectedRole, setSelectedRole] = useState<'candidate' | 'company' | null>(null);
 
+  // ✨ Refs for auto-scrolling
+  const candidateRef = useRef<HTMLButtonElement | null>(null);
+  const companyRef = useRef<HTMLButtonElement | null>(null);
+
+  const handleSelectRole = (role: 'candidate' | 'company') => {
+    setSelectedRole(role);
+
+    const targetRef = role === 'candidate' ? candidateRef.current : companyRef.current;
+
+    // ✨ Smooth scroll into view
+    targetRef?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center'
+    });
+  };
 
   const handleContinue = () => {
     if (selectedRole) {
-      // Route to the appropriate signup page based on role selection
-      router.push(`/signup/${selectedRole}`);
+      router.push(`/${selectedRole}-signup`);
     }
   };
-  
+
   return (
     <div className="flex flex-col min-h-screen bg-background">
       {/* Navbar */}
@@ -65,13 +79,15 @@ const RoleSelection = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
               {/* Candidate Option */}
-              <div 
-                className={`border rounded-lg p-6 cursor-pointer transition-all hover:shadow-md ${
-                  selectedRole === 'candidate' 
-                    ? 'border-[#1d4ed8] bg-blue-50 ring-2 ring-[#1d4ed8]/20' 
+              <button
+                ref={candidateRef}
+                type="button"
+                className={`text-left w-full border rounded-lg p-6 cursor-pointer transition-all hover:shadow-md ${
+                  selectedRole === 'candidate'
+                    ? 'border-[#1d4ed8] bg-blue-50 ring-2 ring-[#1d4ed8]/20'
                     : 'border-gray-200 hover:border-gray-300'
                 }`}
-                onClick={() => setSelectedRole('candidate')}
+                onClick={() => handleSelectRole('candidate')}
               >
                 <div className="flex justify-between items-start mb-4">
                   <div className={`p-3 rounded-full ${
@@ -109,16 +125,18 @@ const RoleSelection = () => {
                     Secure profile sharing with companies
                   </li>
                 </ul>
-              </div>
+              </button>
 
               {/* Company Option */}
-              <div 
-                className={`border rounded-lg p-6 cursor-pointer transition-all hover:shadow-md ${
-                  selectedRole === 'company' 
-                    ? 'border-[#1d4ed8] bg-blue-50 ring-2 ring-[#1d4ed8]/20' 
+              <button
+                ref={companyRef}
+                type="button"
+                className={`text-left w-full border rounded-lg p-6 cursor-pointer transition-all hover:shadow-md ${
+                  selectedRole === 'company'
+                    ? 'border-[#1d4ed8] bg-blue-50 ring-2 ring-[#1d4ed8]/20'
                     : 'border-gray-200 hover:border-gray-300'
                 }`}
-                onClick={() => setSelectedRole('company')}
+                onClick={() => handleSelectRole('company')}
               >
                 <div className="flex justify-between items-start mb-4">
                   <div className={`p-3 rounded-full ${
@@ -156,7 +174,7 @@ const RoleSelection = () => {
                     Advanced analytics dashboard
                   </li>
                 </ul>
-              </div>
+              </button>
             </div>
 
             <div className="mt-8 flex justify-center">
@@ -164,8 +182,8 @@ const RoleSelection = () => {
                 onClick={handleContinue}
                 disabled={!selectedRole}
                 className={`px-8 py-2 h-12 flex items-center ${
-                  selectedRole 
-                    ? 'bg-[#001230] text-white hover:bg-[#1d4ed8]' 
+                  selectedRole
+                    ? 'bg-[#001230] text-white hover:bg-[#1d4ed8]'
                     : 'bg-gray-200 text-gray-500 cursor-not-allowed'
                 }`}
               >
