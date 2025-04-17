@@ -1,25 +1,25 @@
 "use client";
 
 import {
-    Activity,
-    AlertCircle,
-    Award,
-    Bell,
-    Calendar,
-    ChevronRight,
-    Clipboard,
-    Clock,
-    FileText,
-    Github,
-    Laptop,
-    Layers,
-    Linkedin,
-    MapPin,
-    MessageSquare,
-    Settings,
-    Star,
-    User,
-    X
+  Activity,
+  AlertCircle,
+  Award,
+  Bell,
+  Calendar,
+  ChevronRight,
+  Clipboard,
+  Clock,
+  FileText,
+  Github,
+  Laptop,
+  Layers,
+  Linkedin,
+  MapPin,
+  MessageSquare,
+  Settings,
+  Star,
+  User,
+  X
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -27,20 +27,20 @@ import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
 } from "@/components/ui/card";
 import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
