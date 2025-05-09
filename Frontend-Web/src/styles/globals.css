@@ -1,5 +1,6 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
   :root {
@@ -81,7 +82,7 @@
     overflow-y: scroll;
   }
   * {
-    @apply border-border outline-ring/50;
+    @apply border-[color:var(--border)] outline-none;
   }
   body {
     @apply bg-background text-foreground;
