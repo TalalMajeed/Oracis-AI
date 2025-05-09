@@ -2,42 +2,42 @@
 
 import { Button } from "@/components/ui/button";
 import {
-    Card,
-    CardContent,
+  Card,
+  CardContent,
 } from "@/components/ui/card";
 import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from "@/components/ui/select";
 import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
 } from "@/components/ui/table";
 import {
-    Bell,
-    Building2,
-    FileText,
-    MessageSquare,
-    Plus,
-    Search,
-    Settings,
-    X
+  Bell,
+  Building2,
+  FileText,
+  MessageSquare,
+  Plus,
+  Search,
+  Settings,
+  X
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -133,6 +133,13 @@ export default function Interviews() {
           </div>
           
           <nav className="hidden md:flex items-center space-x-6 text-sm font-medium flex-1 justify-center">
+          <Link
+              href="/company/profile"
+              className="transition-colors hover:text-[#1d4ed8]"
+            >
+              Profile
+            </Link>
+            
             <Link
               href="/company/dashboard"
               className="transition-colors hover:text-[#1d4ed8]"
@@ -195,11 +202,11 @@ export default function Interviews() {
             
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <button className="flex items-center space-x-2">
-                  <div className="w-8 h-8 rounded-full bg-[#1d4ed8] flex items-center justify-center">
-                    <Building2 size={16} className="text-white" />
+                <button className="flex items-center space-x-3 px-3 py-2 rounded-md hover:bg-[#0c2b5e] transition-colors">
+                  <div className="w-10 h-10 rounded-full bg-[#1d4ed8] flex items-center justify-center">
+                    <Building2 size={20} className="text-white" />
                   </div>
-                  <span className="hidden md:inline-block">Company</span>
+                  <span className="hidden md:inline-block text-base">Company</span>
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-56">
