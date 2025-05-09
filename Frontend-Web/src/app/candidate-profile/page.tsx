@@ -1,28 +1,28 @@
 "use client";
 
 import {
-    Activity,
-    AlertCircle,
-    Award,
-    Bell,
-    Briefcase,
-    Edit,
-    Eye,
-    Github,
-    Globe,
-    Layers,
-    Linkedin,
-    LogOut,
-    Mail,
-    MapPin,
-    MessageSquare,
-    Phone,
-    Plus,
-    Save,
-    Settings,
-    Star,
-    User,
-    X
+  Activity,
+  AlertCircle,
+  Award,
+  Bell,
+  Briefcase,
+  Edit,
+  Eye,
+  Github,
+  Globe,
+  Layers,
+  Linkedin,
+  LogOut,
+  Mail,
+  MapPin,
+  MessageSquare,
+  Phone,
+  Plus,
+  Save,
+  Settings,
+  Star,
+  User,
+  X
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -31,39 +31,39 @@ import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
 } from "@/components/ui/card";
 import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
 } from "@/components/ui/dialog";
 import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
 import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 
@@ -78,14 +78,14 @@ const CandidateProfile = () => {
   
   // Mock profile data
   const [profile, setProfile] = useState({
-    name: "Alex Johnson",
+    name: "User Name",
     title: "Frontend Developer",
-    email: "alex.johnson@example.com",
+    email: "user@gmail.com",
     phone: "+92 300 1234567",
     location: "Islamabad, Pakistan",
     profileCompleteness: 75,
     profileViews: 42,
-    profileRank: "Intermediate",
+    profileRank: "Expert",
     about: "Passionate frontend developer with 4+ years of experience building responsive web applications using React, Next.js, and modern JavaScript. Strong focus on clean code and user experience.",
     skills: ["React", "JavaScript", "TypeScript", "Next.js", "UI/UX", "HTML5", "CSS3", "Tailwind CSS"],
     experience: [
