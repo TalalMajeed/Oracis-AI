@@ -11,10 +11,11 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export default function CompanySignup() {
+export default function CandidateSignup() {
   const router = useRouter();
   const [formData, setFormData] = useState({
-    companyName: "",
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -44,7 +45,7 @@ export default function CompanySignup() {
       // TODO: Implement actual signup logic
       // For now, just simulate a successful signup
       await new Promise(resolve => setTimeout(resolve, 1000));
-      router.push("/company/dashboard");
+      router.push("/candidate/dashboard");
     } catch (err) {
       setError("Failed to create account. Please try again.");
     } finally {
@@ -86,24 +87,38 @@ export default function CompanySignup() {
                 <span className="text-2xl font-bold">Oracis AI</span>
               </Link>
             </div>
-            <CardTitle className="text-2xl text-center">Company Sign Up</CardTitle>
+            <CardTitle className="text-2xl text-center">Candidate Sign Up</CardTitle>
             <CardDescription className="text-center">
-              Create your company account to get started
+              Create your account to get started
             </CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="companyName">Company Name</Label>
-                <Input
-                  id="companyName"
-                  name="companyName"
-                  type="text"
-                  placeholder="Enter your company name"
-                  value={formData.companyName}
-                  onChange={handleChange}
-                  required
-                />
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="firstName">First Name</Label>
+                  <Input
+                    id="firstName"
+                    name="firstName"
+                    type="text"
+                    placeholder="Enter your first name"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="lastName">Last Name</Label>
+                  <Input
+                    id="lastName"
+                    name="lastName"
+                    type="text"
+                    placeholder="Enter your last name"
+                    value={formData.lastName}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
               </div>
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
@@ -111,7 +126,7 @@ export default function CompanySignup() {
                   id="email"
                   name="email"
                   type="email"
-                  placeholder="company@example.com"
+                  placeholder="you@example.com"
                   value={formData.email}
                   onChange={handleChange}
                   required

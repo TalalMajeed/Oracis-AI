@@ -32,7 +32,7 @@ const RoleSelection = () => {
 
   const handleContinue = () => {
     if (selectedRole) {
-      router.push(`/${selectedRole}-signup`);
+      router.push(`/${selectedRole}/signup`);
     }
   };
 

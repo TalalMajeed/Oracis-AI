@@ -776,12 +776,12 @@ const Home = () => {
                   <h4 className="font-medium text-lg mb-4">Legal</h4>
                   <ul className="space-y-2">
                     <li>
-                      <Link href="#" className="text-gray-300 hover:text-white">
+                      <Link href="/privacy-policy" className="text-gray-300 hover:text-white">
                         Privacy Policy
                       </Link>
                     </li>
                     <li>
-                      <Link href="#" className="text-gray-300 hover:text-white">
+                      <Link href="/terms" className="text-gray-300 hover:text-white">
                         Terms of Service
                       </Link>
                     </li>
