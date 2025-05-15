@@ -69,6 +69,7 @@ CREATE TABLE candidates (
     last_name VARCHAR2(50) NOT NULL,
     email VARCHAR2(100) UNIQUE,
     phone VARCHAR2(20),
+    password VARCHAR2(255) NOT NULL,
     resume_url VARCHAR2(255),
     registration_date DATE DEFAULT SYSDATE,
     status VARCHAR2(20) CHECK (status IN ('ACTIVE', 'INACTIVE', 'HIRED', 'REJECTED'))

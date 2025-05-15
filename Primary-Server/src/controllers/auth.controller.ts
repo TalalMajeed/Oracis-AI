@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import { generateToken } from "../middleware/auth.middleware";
 import { LoginRequest, RegisterCandidateRequest } from "../types/auth.types";
 import { executeQuery } from "../config/database";
+import oracledb from "oracledb";
 
 export const login = async (
   req: Request<{}, {}, LoginRequest>,
@@ -80,7 +81,7 @@ export const registerCandidate = async (
         email,
         phone,
         password: hashedPassword,
-        id: { dir: 3000, type: 2002 }, // Oracle OUT parameter for returning ID
+        id: { dir: oracledb.BIND_OUT, type: oracledb.NUMBER },
       }
     );
 

@@ -1,8 +1,8 @@
-import { Briefcase, Eye, MessageSquare, Zap } from "lucide-react"
-import { SidebarWrapper } from "@/components/sidebar"
-import { StatCard } from "@/components/dashboard/stat-card"
-import { ActivityTimeline } from "@/components/dashboard/activity-timeline"
-import { RecommendationCard } from "@/components/dashboard/recommendation-card"
+import { Briefcase, Eye, MessageSquare, Zap } from "lucide-react";
+import { SidebarWrapper } from "@/components/sidebar";
+import { StatCard } from "@/components/dashboard/stat-card";
+import { ActivityTimeline } from "@/components/dashboard/activity-timeline";
+import { RecommendationCard } from "@/components/dashboard/recommendation-card";
 
 // Mock data for activity timeline
 const activityEvents = [
@@ -11,30 +11,30 @@ const activityEvents = [
     title: "Applied to Senior Frontend Developer",
     description: "TechCorp Inc.",
     time: "2 hours ago",
-    type: "application",
+    type: "application" as const,
   },
   {
     id: "2",
     title: "Your profile was viewed by Google",
     description: "Recruiter from Google viewed your profile",
     time: "Yesterday",
-    type: "view",
+    type: "view" as const,
   },
   {
     id: "3",
     title: "Message from Sarah at InnovateSoft",
     description: "Regarding your application for Full Stack Engineer",
     time: "2 days ago",
-    type: "message",
+    type: "message" as const,
   },
   {
     id: "4",
     title: "AI recommended a new job",
     description: "UI/UX Developer at DesignHub matches your skills",
     time: "3 days ago",
-    type: "recommendation",
+    type: "recommendation" as const,
   },
-]
+];
 
 // Mock data for job recommendations
 const jobRecommendations = [
@@ -68,7 +68,7 @@ const jobRecommendations = [
     skills: ["Figma", "React", "CSS", "User Research", "Prototyping"],
     postedAt: "3 days ago",
   },
-]
+];
 
 export default function CandidateDashboard() {
   return (
@@ -76,7 +76,9 @@ export default function CandidateDashboard() {
       <div className="space-y-6">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
-          <p className="text-muted-foreground">Welcome back, John! Here's what's happening with your job search.</p>
+          <p className="text-muted-foreground">
+            Welcome back, John! Here's what's happening with your job search.
+          </p>
         </div>
 
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -113,10 +115,16 @@ export default function CandidateDashboard() {
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           <div className="space-y-6 lg:col-span-2">
             <div>
-              <h2 className="text-xl font-semibold mb-4">AI Job Recommendations</h2>
+              <h2 className="text-xl font-semibold mb-4">
+                AI Job Recommendations
+              </h2>
               <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2">
                 {jobRecommendations.slice(0, 2).map((job) => (
-                  <RecommendationCard key={job.id} recommendation={job} type="job" />
+                  <RecommendationCard
+                    key={job.id}
+                    recommendation={job}
+                    type="job"
+                  />
                 ))}
               </div>
             </div>
@@ -130,10 +138,14 @@ export default function CandidateDashboard() {
                     <span className="text-sm text-muted-foreground">85%</span>
                   </div>
                   <div className="mt-2 h-2 w-full rounded-full bg-secondary">
-                    <div className="h-full rounded-full bg-primary" style={{ width: "85%" }}></div>
+                    <div
+                      className="h-full rounded-full bg-primary"
+                      style={{ width: "85%" }}
+                    ></div>
                   </div>
                   <p className="mt-2 text-xs text-muted-foreground">
-                    Your technical skills are strong. Consider adding more project examples.
+                    Your technical skills are strong. Consider adding more
+                    project examples.
                   </p>
                 </div>
                 <div className="rounded-lg border bg-card p-4">
@@ -142,7 +154,10 @@ export default function CandidateDashboard() {
                     <span className="text-sm text-muted-foreground">72%</span>
                   </div>
                   <div className="mt-2 h-2 w-full rounded-full bg-secondary">
-                    <div className="h-full rounded-full bg-primary" style={{ width: "72%" }}></div>
+                    <div
+                      className="h-full rounded-full bg-primary"
+                      style={{ width: "72%" }}
+                    ></div>
                   </div>
                   <p className="mt-2 text-xs text-muted-foreground">
                     Add more details about your achievements in previous roles.
@@ -199,5 +214,5 @@ export default function CandidateDashboard() {
         </div>
       </div>
     </SidebarWrapper>
-  )
+  );
 }

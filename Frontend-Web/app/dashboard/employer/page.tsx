@@ -1,40 +1,40 @@
-import { Briefcase, Eye, MessageSquare, Users } from "lucide-react"
-import { SidebarWrapper } from "@/components/sidebar"
-import { StatCard } from "@/components/dashboard/stat-card"
-import { ActivityTimeline } from "@/components/dashboard/activity-timeline"
-import { RecommendationCard } from "@/components/dashboard/recommendation-card"
+import { Briefcase, Eye, MessageSquare, Users } from "lucide-react";
+import { SidebarWrapper } from "@/components/sidebar";
+import { StatCard } from "@/components/dashboard/stat-card";
+import { ActivityTimeline } from "@/components/dashboard/activity-timeline";
+import { RecommendationCard } from "@/components/dashboard/recommendation-card";
 
 // Mock data for activity timeline
 const activityEvents = [
   {
     id: "1",
-    title: "New application for Senior Frontend Developer",
-    description: "John Doe applied for this position",
+    title: "Applied to Senior Frontend Developer",
+    description: "TechCorp Inc.",
     time: "2 hours ago",
-    type: "application",
+    type: "application" as const,
   },
   {
     id: "2",
-    title: "Your job posting was viewed 45 times",
-    description: "Full Stack Engineer position",
+    title: "Your profile was viewed by Google",
+    description: "Recruiter from Google viewed your profile",
     time: "Yesterday",
-    type: "view",
+    type: "view" as const,
   },
   {
     id: "3",
-    title: "Message from Sarah Williams",
-    description: "Regarding the UI/UX Developer position",
+    title: "Message from Sarah at InnovateSoft",
+    description: "Regarding your application for Full Stack Engineer",
     time: "2 days ago",
-    type: "message",
+    type: "message" as const,
   },
   {
     id: "4",
-    title: "AI found a new candidate match",
-    description: "Michael Brown matches your Full Stack Engineer position",
+    title: "AI recommended a new job",
+    description: "UI/UX Developer at DesignHub matches your skills",
     time: "3 days ago",
-    type: "recommendation",
+    type: "recommendation" as const,
   },
-]
+];
 
 // Mock data for candidate recommendations
 const candidateRecommendations = [
@@ -65,7 +65,7 @@ const candidateRecommendations = [
     skills: ["Figma", "React", "CSS", "User Research", "Prototyping"],
     experience: "3 years",
   },
-]
+];
 
 export default function EmployerDashboard() {
   return (
@@ -73,7 +73,9 @@ export default function EmployerDashboard() {
       <div className="space-y-6">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
-          <p className="text-muted-foreground">Welcome back, Acme Corp! Here's what's happening with your hiring.</p>
+          <p className="text-muted-foreground">
+            Welcome back, Acme Corp! Here's what's happening with your hiring.
+          </p>
         </div>
 
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -110,10 +112,16 @@ export default function EmployerDashboard() {
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           <div className="space-y-6 lg:col-span-2">
             <div>
-              <h2 className="text-xl font-semibold mb-4">AI Candidate Recommendations</h2>
+              <h2 className="text-xl font-semibold mb-4">
+                AI Candidate Recommendations
+              </h2>
               <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2">
                 {candidateRecommendations.slice(0, 2).map((candidate) => (
-                  <RecommendationCard key={candidate.id} recommendation={candidate} type="candidate" />
+                  <RecommendationCard
+                    key={candidate.id}
+                    recommendation={candidate}
+                    type="candidate"
+                  />
                 ))}
               </div>
             </div>
@@ -124,7 +132,9 @@ export default function EmployerDashboard() {
                 <div className="rounded-lg border bg-card p-4">
                   <div className="flex items-center justify-between">
                     <h3 className="font-medium">Senior Frontend Developer</h3>
-                    <span className="text-xs bg-green-100 text-green-800 px-2 py-0.5 rounded-full">Active</span>
+                    <span className="text-xs bg-green-100 text-green-800 px-2 py-0.5 rounded-full">
+                      Active
+                    </span>
                   </div>
                   <div className="mt-2 flex items-center justify-between text-sm">
                     <span className="text-muted-foreground">Applications</span>
@@ -135,14 +145,18 @@ export default function EmployerDashboard() {
                     <span className="font-medium">312</span>
                   </div>
                   <div className="mt-1 flex items-center justify-between text-sm">
-                    <span className="text-muted-foreground">Avg. Match Score</span>
+                    <span className="text-muted-foreground">
+                      Avg. Match Score
+                    </span>
                     <span className="font-medium">76%</span>
                   </div>
                 </div>
                 <div className="rounded-lg border bg-card p-4">
                   <div className="flex items-center justify-between">
                     <h3 className="font-medium">Full Stack Engineer</h3>
-                    <span className="text-xs bg-green-100 text-green-800 px-2 py-0.5 rounded-full">Active</span>
+                    <span className="text-xs bg-green-100 text-green-800 px-2 py-0.5 rounded-full">
+                      Active
+                    </span>
                   </div>
                   <div className="mt-2 flex items-center justify-between text-sm">
                     <span className="text-muted-foreground">Applications</span>
@@ -153,7 +167,9 @@ export default function EmployerDashboard() {
                     <span className="font-medium">278</span>
                   </div>
                   <div className="mt-1 flex items-center justify-between text-sm">
-                    <span className="text-muted-foreground">Avg. Match Score</span>
+                    <span className="text-muted-foreground">
+                      Avg. Match Score
+                    </span>
                     <span className="font-medium">82%</span>
                   </div>
                 </div>
@@ -208,5 +224,5 @@ export default function EmployerDashboard() {
         </div>
       </div>
     </SidebarWrapper>
-  )
+  );
 }

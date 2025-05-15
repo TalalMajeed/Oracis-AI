@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import type React from "react"
-import Link from "next/link"
-import Image from "next/image"
-import { usePathname } from "next/navigation"
+import type React from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
 import {
   BarChart2,
   Briefcase,
@@ -16,7 +16,7 @@ import {
   User,
   Users,
   Zap,
-} from "lucide-react"
+} from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -30,24 +30,24 @@ import {
   SidebarMenuItem,
   SidebarProvider,
   SidebarTrigger,
-} from "@/components/ui/sidebar"
-import { Button } from "@/components/ui/button"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+} from "@/components/ui/sidebar";
+import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 
 interface SidebarWrapperProps {
-  children: React.ReactNode
-  userType: "candidate" | "employer"
+  children: React.ReactNode;
+  userType: "candidate" | "employer";
 }
 
 export function SidebarWrapper({ children, userType }: SidebarWrapperProps) {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   const candidateNavItems = [
     {
@@ -85,7 +85,7 @@ export function SidebarWrapper({ children, userType }: SidebarWrapperProps) {
       href: "/candidate/settings",
       icon: Settings,
     },
-  ]
+  ];
 
   const employerNavItems = [
     {
@@ -128,11 +128,13 @@ export function SidebarWrapper({ children, userType }: SidebarWrapperProps) {
       href: "/employer/settings",
       icon: Settings,
     },
-  ]
+  ];
 
-  const navItems = userType === "candidate" ? candidateNavItems : employerNavItems
-  const userName = userType === "candidate" ? "John Doe" : "Acme Corp"
-  const userRole = userType === "candidate" ? "Software Engineer" : "Technology"
+  const navItems =
+    userType === "candidate" ? candidateNavItems : employerNavItems;
+  const userName = userType === "candidate" ? "John Doe" : "Acme Corp";
+  const userRole =
+    userType === "candidate" ? "Software Engineer" : "Technology";
 
   return (
     <SidebarProvider>
@@ -141,12 +143,19 @@ export function SidebarWrapper({ children, userType }: SidebarWrapperProps) {
           <SidebarHeader className="border-b border-border">
             <div className="flex items-center gap-2 px-2">
               <div className="flex h-10 w-10 items-center justify-center">
-                <Image src="/logo.png" alt="Oracis AI Logo" width={40} height={40} />
+                <Image
+                  src="/logo.png"
+                  alt="Oracis AI Logo"
+                  width={40}
+                  height={40}
+                />
               </div>
               <div className="flex flex-col">
                 <span className="text-lg font-semibold">Oracis AI</span>
                 <span className="text-xs text-muted-foreground">
-                  {userType === "candidate" ? "Candidate Portal" : "Employer Portal"}
+                  {userType === "candidate"
+                    ? "Candidate Portal"
+                    : "Employer Portal"}
                 </span>
               </div>
             </div>
@@ -158,7 +167,11 @@ export function SidebarWrapper({ children, userType }: SidebarWrapperProps) {
                 <SidebarMenu>
                   {navItems.map((item) => (
                     <SidebarMenuItem key={item.href}>
-                      <SidebarMenuButton asChild isActive={pathname === item.href} tooltip={item.title}>
+                      <SidebarMenuButton
+                        asChild
+                        isActive={pathname === item.href}
+                        tooltip={item.title}
+                      >
                         <Link href={item.href}>
                           <item.icon className="h-4 w-4" />
                           <span>{item.title}</span>
@@ -185,7 +198,9 @@ export function SidebarWrapper({ children, userType }: SidebarWrapperProps) {
                   </Avatar>
                   <div className="flex flex-col items-start text-left">
                     <span className="text-sm font-medium">{userName}</span>
-                    <span className="text-xs text-muted-foreground">{userRole}</span>
+                    <span className="text-xs text-muted-foreground">
+                      {userRole}
+                    </span>
                   </div>
                 </Button>
               </DropdownMenuTrigger>
@@ -220,12 +235,14 @@ export function SidebarWrapper({ children, userType }: SidebarWrapperProps) {
               <Button variant="outline" size="sm">
                 Upgrade Plan
               </Button>
-              <Button size="sm">{userType === "candidate" ? "Create CV" : "Post Job"}</Button>
+              <Button size="sm">
+                {userType === "candidate" ? "Create CV" : "Post Job"}
+              </Button>
             </div>
           </div>
           <main className="p-6">{children}</main>
         </div>
       </div>
     </SidebarProvider>
-  )
+  );
 }

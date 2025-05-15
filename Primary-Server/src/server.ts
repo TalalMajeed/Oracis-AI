@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 import dotenv from "dotenv";
+import path from "path";
 import { initializeDatabase } from "./config/database";
 import authRoutes from "./routes/auth.routes";
 import entityRoutes from "./routes/entity.routes";
@@ -16,9 +17,17 @@ app.use(cors());
 app.use(helmet());
 app.use(express.json());
 
+// Serve static files from the public directory
+app.use(express.static(path.join(__dirname, "../public")));
+
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api", entityRoutes);
+
+// Root route
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../public/index.html"));
+});
 
 // Health check endpoint
 app.get("/health", (req, res) => {
