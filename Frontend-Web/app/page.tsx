@@ -88,13 +88,13 @@ export default function Home() {
               with blockchain technology.
             </p>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-              <Link href="/register?type=candidate">
+              <Link href="/register/candidate">
                 <Button size="lg" className="gap-1">
                   <User className="h-4 w-4" />
                   Join as Candidate
                 </Button>
               </Link>
-              <Link href="/register?type=employer">
+              <Link href="/register/employer">
                 <Button size="lg" variant="outline" className="gap-1">
                   <Briefcase className="h-4 w-4" />
                   Join as Employer
@@ -315,11 +315,13 @@ export default function Home() {
                 <CardHeader>
                   <div className="flex items-center gap-4">
                     <Avatar className="h-10 w-10">
-                      <AvatarImage src="/placeholder.svg?height=40&width=40" />
+                      <AvatarImage src="https://media.licdn.com/dms/image/v2/D4D03AQGZClph5qI9VQ/profile-displayphoto-shrink_200_200/B4DZPQNXMaHMAY-/0/1734364984703?e=1752710400&v=beta&t=-cn40mEFHw21rTOLVO4ultsxZ4SsCs6xN9fnBGzP4JA" />
                       <AvatarFallback>JD</AvatarFallback>
                     </Avatar>
                     <div>
-                      <CardTitle className="text-base">John Doe</CardTitle>
+                      <CardTitle className="text-base">
+                        Muhammad Talal Majeed
+                      </CardTitle>
                       <CardDescription>Software Engineer</CardDescription>
                     </div>
                   </div>
@@ -336,12 +338,14 @@ export default function Home() {
                 <CardHeader>
                   <div className="flex items-center gap-4">
                     <Avatar className="h-10 w-10">
-                      <AvatarImage src="/placeholder.svg?height=40&width=40" />
+                      <AvatarImage src="https://media.licdn.com/dms/image/v2/D4D03AQGN-WhQotjfkg/profile-displayphoto-shrink_200_200/B4DZanGMHXHEAc-/0/1746560142005?e=1752710400&v=beta&t=HiUc3ifDKFatQFFaV13mFsxYxErC_0cI1Lfws5JTNb0" />
                       <AvatarFallback>AC</AvatarFallback>
                     </Avatar>
                     <div>
-                      <CardTitle className="text-base">Acme Corp</CardTitle>
-                      <CardDescription>Technology Company</CardDescription>
+                      <CardTitle className="text-base">
+                        Syed Abdul Ahad
+                      </CardTitle>
+                      <CardDescription>Senior Manager</CardDescription>
                     </div>
                   </div>
                 </CardHeader>
@@ -357,12 +361,12 @@ export default function Home() {
                 <CardHeader>
                   <div className="flex items-center gap-4">
                     <Avatar className="h-10 w-10">
-                      <AvatarImage src="/placeholder.svg?height=40&width=40" />
+                      <AvatarImage src="https://media.licdn.com/dms/image/v2/D4D03AQF2aO2RjSJpoQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1723046553549?e=1752710400&v=beta&t=EJU_u9tte8N9n14yl2Oq0B-sEibNK2Jmwty5kS_3wwU" />
                       <AvatarFallback>SM</AvatarFallback>
                     </Avatar>
                     <div>
                       <CardTitle className="text-base">
-                        Sarah Martinez
+                        Muhammad Fozan Mujtaba
                       </CardTitle>
                       <CardDescription>UX Designer</CardDescription>
                     </div>

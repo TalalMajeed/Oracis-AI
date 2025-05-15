@@ -67,22 +67,22 @@ export function SidebarWrapper({ children, userType }: SidebarWrapperProps) {
     },
     {
       title: "My Profile",
-      href: "/candidate/profile",
+      href: "/dashboard/candidate/profile",
       icon: User,
     },
     {
       title: "CV Builder",
-      href: "/candidate/cv-builder",
+      href: "/dashboard/candidate/cv-builder",
       icon: FileText,
     },
     {
       title: "Messages",
-      href: "/candidate/messages",
+      href: "/dashboard/candidate/messages",
       icon: MessageSquare,
     },
     {
       title: "Settings",
-      href: "/candidate/settings",
+      href: "/dashboard/candidate/settings",
       icon: Settings,
     },
   ];
@@ -90,42 +90,42 @@ export function SidebarWrapper({ children, userType }: SidebarWrapperProps) {
   const employerNavItems = [
     {
       title: "Dashboard",
-      href: "/employer",
+      href: "/dashboard/employer",
       icon: Home,
     },
     {
       title: "AI Finder",
-      href: "/employer/ai-finder",
+      href: "/dashboard/employer/ai-finder",
       icon: Zap,
     },
     {
       title: "Search Candidates",
-      href: "/employer/search",
+      href: "/dashboard/employer/search",
       icon: Search,
     },
     {
       title: "Job Postings",
-      href: "/employer/jobs",
+      href: "/dashboard/employer/jobs",
       icon: Briefcase,
     },
     {
       title: "Analytics",
-      href: "/employer/analytics",
+      href: "/dashboard/employer/analytics",
       icon: BarChart2,
     },
     {
       title: "Team",
-      href: "/employer/team",
+      href: "/dashboard/employer/team",
       icon: Users,
     },
     {
       title: "Messages",
-      href: "/employer/messages",
+      href: "/dashboard/employer/messages",
       icon: MessageSquare,
     },
     {
       title: "Settings",
-      href: "/employer/settings",
+      href: "/dashboard/employer/settings",
       icon: Settings,
     },
   ];

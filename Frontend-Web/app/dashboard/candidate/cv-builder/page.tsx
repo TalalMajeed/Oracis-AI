@@ -1,17 +1,30 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { SidebarWrapper } from "@/components/sidebar"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Separator } from "@/components/ui/separator"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Textarea } from "@/components/ui/textarea"
-import { Badge } from "@/components/ui/badge"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Switch } from "@/components/ui/switch"
+import { useState } from "react";
+import { SidebarWrapper } from "@/components/sidebar";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Textarea } from "@/components/ui/textarea";
+import { Badge } from "@/components/ui/badge";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Switch } from "@/components/ui/switch";
 import {
   AlertCircle,
   ArrowLeft,
@@ -29,28 +42,28 @@ import {
   Upload,
   X,
   Zap,
-} from "lucide-react"
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+} from "lucide-react";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 export default function CVBuilder() {
-  const [activeTab, setActiveTab] = useState("editor")
-  const [isGenerating, setIsGenerating] = useState(false)
-  const [isAiSuggesting, setIsAiSuggesting] = useState(false)
+  const [activeTab, setActiveTab] = useState("editor");
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [isAiSuggesting, setIsAiSuggesting] = useState(false);
 
   const handleGenerate = () => {
-    setIsGenerating(true)
+    setIsGenerating(true);
     setTimeout(() => {
-      setIsGenerating(false)
-      setActiveTab("preview")
-    }, 2000)
-  }
+      setIsGenerating(false);
+      setActiveTab("preview");
+    }, 2000);
+  };
 
   const handleAiSuggest = () => {
-    setIsAiSuggesting(true)
+    setIsAiSuggesting(true);
     setTimeout(() => {
-      setIsAiSuggesting(false)
-    }, 1500)
-  }
+      setIsAiSuggesting(false);
+    }, 1500);
+  };
 
   return (
     <SidebarWrapper userType="candidate">
@@ -58,7 +71,9 @@ export default function CVBuilder() {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold tracking-tight">CV Builder</h1>
-            <p className="text-muted-foreground">Create and customize your professional CV with AI assistance</p>
+            <p className="text-muted-foreground">
+              Create and customize your professional CV with AI assistance
+            </p>
           </div>
           <div className="flex items-center gap-2">
             <Button variant="outline" size="sm" className="gap-1">
@@ -72,7 +87,11 @@ export default function CVBuilder() {
           </div>
         </div>
 
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
+        <Tabs
+          value={activeTab}
+          onValueChange={setActiveTab}
+          className="space-y-4"
+        >
           <div className="flex items-center justify-between">
             <TabsList>
               <TabsTrigger value="editor" className="gap-2">
@@ -102,7 +121,9 @@ export default function CVBuilder() {
                 <Card>
                   <CardHeader>
                     <CardTitle>CV Sections</CardTitle>
-                    <CardDescription>Customize the sections in your CV</CardDescription>
+                    <CardDescription>
+                      Customize the sections in your CV
+                    </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-2">
                     <div className="flex items-center justify-between">
@@ -110,7 +131,9 @@ export default function CVBuilder() {
                         <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary/10 text-primary">
                           <Check className="h-3.5 w-3.5" />
                         </div>
-                        <span className="text-sm font-medium">Personal Information</span>
+                        <span className="text-sm font-medium">
+                          Personal Information
+                        </span>
                       </div>
                       <Switch checked={true} />
                     </div>
@@ -119,7 +142,9 @@ export default function CVBuilder() {
                         <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary/10 text-primary">
                           <Check className="h-3.5 w-3.5" />
                         </div>
-                        <span className="text-sm font-medium">Professional Summary</span>
+                        <span className="text-sm font-medium">
+                          Professional Summary
+                        </span>
                       </div>
                       <Switch checked={true} />
                     </div>
@@ -128,7 +153,9 @@ export default function CVBuilder() {
                         <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary/10 text-primary">
                           <Check className="h-3.5 w-3.5" />
                         </div>
-                        <span className="text-sm font-medium">Work Experience</span>
+                        <span className="text-sm font-medium">
+                          Work Experience
+                        </span>
                       </div>
                       <Switch checked={true} />
                     </div>
@@ -164,7 +191,9 @@ export default function CVBuilder() {
                         <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary/10 text-primary">
                           <X className="h-3.5 w-3.5" />
                         </div>
-                        <span className="text-sm font-medium">Certifications</span>
+                        <span className="text-sm font-medium">
+                          Certifications
+                        </span>
                       </div>
                       <Switch checked={false} />
                     </div>
@@ -177,7 +206,11 @@ export default function CVBuilder() {
                       </div>
                       <Switch checked={false} />
                     </div>
-                    <Button variant="outline" size="sm" className="mt-2 w-full gap-1">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="mt-2 w-full gap-1"
+                    >
                       <Plus className="h-3.5 w-3.5" />
                       Add Section
                     </Button>
@@ -187,7 +220,9 @@ export default function CVBuilder() {
                 <Card>
                   <CardHeader>
                     <CardTitle>AI Assistant</CardTitle>
-                    <CardDescription>Get AI-powered suggestions for your CV</CardDescription>
+                    <CardDescription>
+                      Get AI-powered suggestions for your CV
+                    </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="rounded-md bg-primary/5 p-4">
@@ -196,12 +231,20 @@ export default function CVBuilder() {
                           <Zap className="h-4 w-4" />
                         </div>
                         <div className="space-y-1">
-                          <h4 className="text-sm font-medium">AI Suggestions</h4>
+                          <h4 className="text-sm font-medium">
+                            AI Suggestions
+                          </h4>
                           <p className="text-xs text-muted-foreground">
-                            Our AI can help improve your CV by suggesting better wording, highlighting achievements, and
-                            identifying missing information.
+                            Our AI can help improve your CV by suggesting better
+                            wording, highlighting achievements, and identifying
+                            missing information.
                           </p>
-                          <Button size="sm" className="mt-2 gap-1" onClick={handleAiSuggest} disabled={isAiSuggesting}>
+                          <Button
+                            size="sm"
+                            className="mt-2 gap-1"
+                            onClick={handleAiSuggest}
+                            disabled={isAiSuggesting}
+                          >
                             {isAiSuggesting ? (
                               <>
                                 <Loader2 className="h-3.5 w-3.5 animate-spin" />
@@ -221,8 +264,8 @@ export default function CVBuilder() {
                       <AlertCircle className="h-4 w-4 text-amber-600" />
                       <AlertTitle>Tip</AlertTitle>
                       <AlertDescription className="text-xs">
-                        Be specific about your achievements. Use numbers and metrics where possible to quantify your
-                        impact.
+                        Be specific about your achievements. Use numbers and
+                        metrics where possible to quantify your impact.
                       </AlertDescription>
                     </Alert>
                   </CardContent>
@@ -247,12 +290,19 @@ export default function CVBuilder() {
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="job-title">Professional Title</Label>
-                      <Input id="job-title" defaultValue="Senior Frontend Developer" />
+                      <Input
+                        id="job-title"
+                        defaultValue="Senior Frontend Developer"
+                      />
                     </div>
                     <div className="grid gap-4 sm:grid-cols-2">
                       <div className="space-y-2">
                         <Label htmlFor="email">Email</Label>
-                        <Input id="email" type="email" defaultValue="john.doe@example.com" />
+                        <Input
+                          id="email"
+                          type="email"
+                          defaultValue="john.doe@example.com"
+                        />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="phone">Phone</Label>
@@ -266,7 +316,10 @@ export default function CVBuilder() {
                     <div className="grid gap-4 sm:grid-cols-2">
                       <div className="space-y-2">
                         <Label htmlFor="linkedin">LinkedIn</Label>
-                        <Input id="linkedin" defaultValue="linkedin.com/in/johndoe" />
+                        <Input
+                          id="linkedin"
+                          defaultValue="linkedin.com/in/johndoe"
+                        />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="website">Website/Portfolio</Label>
@@ -289,8 +342,8 @@ export default function CVBuilder() {
                         defaultValue="Senior Frontend Developer with 5+ years of experience building responsive and user-friendly web applications. Specialized in React, TypeScript, and Next.js. Passionate about creating clean, efficient, and accessible user interfaces. Strong problem-solving skills and experience working in agile environments."
                       />
                       <p className="text-xs text-muted-foreground">
-                        A concise overview of your professional background, key skills, and career goals. Aim for 3-5
-                        sentences.
+                        A concise overview of your professional background, key
+                        skills, and career goals. Aim for 3-5 sentences.
                       </p>
                     </div>
                   </CardContent>
@@ -313,7 +366,11 @@ export default function CVBuilder() {
                               className="h-7 border-0 p-0 text-base font-medium focus-visible:ring-0"
                               defaultValue="Senior Frontend Developer"
                             />
-                            <Button variant="ghost" size="icon" className="h-7 w-7">
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className="h-7 w-7"
+                            >
                               <Trash className="h-4 w-4 text-muted-foreground" />
                             </Button>
                           </div>
@@ -363,7 +420,11 @@ export default function CVBuilder() {
                           <Badge variant="secondary">TypeScript</Badge>
                           <Badge variant="secondary">Next.js</Badge>
                           <Badge variant="secondary">GraphQL</Badge>
-                          <Button variant="outline" size="sm" className="h-6 gap-1 text-xs">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="h-6 gap-1 text-xs"
+                          >
                             <Plus className="h-3 w-3" />
                             Add Skill
                           </Button>
@@ -379,7 +440,11 @@ export default function CVBuilder() {
                               className="h-7 border-0 p-0 text-base font-medium focus-visible:ring-0"
                               defaultValue="Frontend Developer"
                             />
-                            <Button variant="ghost" size="icon" className="h-7 w-7">
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className="h-7 w-7"
+                            >
                               <Trash className="h-4 w-4 text-muted-foreground" />
                             </Button>
                           </div>
@@ -429,7 +494,11 @@ export default function CVBuilder() {
                           <Badge variant="secondary">JavaScript</Badge>
                           <Badge variant="secondary">Redux</Badge>
                           <Badge variant="secondary">Jest</Badge>
-                          <Button variant="outline" size="sm" className="h-6 gap-1 text-xs">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="h-6 gap-1 text-xs"
+                          >
                             <Plus className="h-3 w-3" />
                             Add Skill
                           </Button>
@@ -456,7 +525,11 @@ export default function CVBuilder() {
                               className="h-7 border-0 p-0 text-base font-medium focus-visible:ring-0"
                               defaultValue="Master of Science in Computer Science"
                             />
-                            <Button variant="ghost" size="icon" className="h-7 w-7">
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className="h-7 w-7"
+                            >
                               <Trash className="h-4 w-4 text-muted-foreground" />
                             </Button>
                           </div>
@@ -506,7 +579,11 @@ export default function CVBuilder() {
                               className="h-7 border-0 p-0 text-base font-medium focus-visible:ring-0"
                               defaultValue="Bachelor of Science in Computer Engineering"
                             />
-                            <Button variant="ghost" size="icon" className="h-7 w-7">
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className="h-7 w-7"
+                            >
                               <Trash className="h-4 w-4 text-muted-foreground" />
                             </Button>
                           </div>
@@ -557,7 +634,9 @@ export default function CVBuilder() {
                   <CardContent>
                     <div className="space-y-4">
                       <div className="space-y-2">
-                        <Label htmlFor="technical-skills">Technical Skills</Label>
+                        <Label htmlFor="technical-skills">
+                          Technical Skills
+                        </Label>
                         <Textarea
                           id="technical-skills"
                           className="min-h-[80px]"
@@ -597,7 +676,9 @@ export default function CVBuilder() {
                               <SelectItem value="native">Native</SelectItem>
                               <SelectItem value="fluent">Fluent</SelectItem>
                               <SelectItem value="advanced">Advanced</SelectItem>
-                              <SelectItem value="intermediate">Intermediate</SelectItem>
+                              <SelectItem value="intermediate">
+                                Intermediate
+                              </SelectItem>
                               <SelectItem value="basic">Basic</SelectItem>
                             </SelectContent>
                           </Select>
@@ -618,7 +699,9 @@ export default function CVBuilder() {
                               <SelectItem value="native">Native</SelectItem>
                               <SelectItem value="fluent">Fluent</SelectItem>
                               <SelectItem value="advanced">Advanced</SelectItem>
-                              <SelectItem value="intermediate">Intermediate</SelectItem>
+                              <SelectItem value="intermediate">
+                                Intermediate
+                              </SelectItem>
                               <SelectItem value="basic">Basic</SelectItem>
                             </SelectContent>
                           </Select>
@@ -649,7 +732,9 @@ export default function CVBuilder() {
                 </CardHeader>
                 <CardContent className="p-4">
                   <CardTitle className="text-base">Modern</CardTitle>
-                  <CardDescription>Clean and contemporary design</CardDescription>
+                  <CardDescription>
+                    Clean and contemporary design
+                  </CardDescription>
                 </CardContent>
                 <CardFooter className="p-4 pt-0">
                   <Button size="sm" className="w-full">
@@ -670,7 +755,9 @@ export default function CVBuilder() {
                 </CardHeader>
                 <CardContent className="p-4">
                   <CardTitle className="text-base">Professional</CardTitle>
-                  <CardDescription>Traditional and elegant layout</CardDescription>
+                  <CardDescription>
+                    Traditional and elegant layout
+                  </CardDescription>
                 </CardContent>
                 <CardFooter className="p-4 pt-0">
                   <Button size="sm" variant="outline" className="w-full">
@@ -708,7 +795,9 @@ export default function CVBuilder() {
                 <div className="mx-auto max-w-[800px] space-y-8">
                   <div className="text-center">
                     <h2 className="text-3xl font-bold">John Doe</h2>
-                    <p className="text-lg text-muted-foreground">Senior Frontend Developer</p>
+                    <p className="text-lg text-muted-foreground">
+                      Senior Frontend Developer
+                    </p>
                     <div className="mt-2 flex items-center justify-center gap-4 text-sm text-muted-foreground">
                       <span>john.doe@example.com</span>
                       <span>•</span>
@@ -724,40 +813,58 @@ export default function CVBuilder() {
                   </div>
 
                   <div>
-                    <h3 className="text-lg font-semibold border-b pb-1">Professional Summary</h3>
+                    <h3 className="text-lg font-semibold border-b pb-1">
+                      Professional Summary
+                    </h3>
                     <p className="mt-2 text-sm">
-                      Senior Frontend Developer with 5+ years of experience building responsive and user-friendly web
-                      applications. Specialized in React, TypeScript, and Next.js. Passionate about creating clean,
-                      efficient, and accessible user interfaces. Strong problem-solving skills and experience working in
-                      agile environments.
+                      Senior Frontend Developer with 5+ years of experience
+                      building responsive and user-friendly web applications.
+                      Specialized in React, TypeScript, and Next.js. Passionate
+                      about creating clean, efficient, and accessible user
+                      interfaces. Strong problem-solving skills and experience
+                      working in agile environments.
                     </p>
                   </div>
 
                   <div>
-                    <h3 className="text-lg font-semibold border-b pb-1">Work Experience</h3>
+                    <h3 className="text-lg font-semibold border-b pb-1">
+                      Work Experience
+                    </h3>
                     <div className="mt-4 space-y-6">
                       <div>
                         <div className="flex items-center justify-between">
                           <div>
-                            <h4 className="font-medium">Senior Frontend Developer</h4>
-                            <p className="text-sm text-muted-foreground">TechCorp Inc.</p>
+                            <h4 className="font-medium">
+                              Senior Frontend Developer
+                            </h4>
+                            <p className="text-sm text-muted-foreground">
+                              TechCorp Inc.
+                            </p>
                           </div>
                           <div className="text-right">
                             <p className="text-sm">Jan 2021 - Present</p>
-                            <p className="text-sm text-muted-foreground">San Francisco, CA</p>
+                            <p className="text-sm text-muted-foreground">
+                              San Francisco, CA
+                            </p>
                           </div>
                         </div>
                         <ul className="mt-2 space-y-1 text-sm">
                           <li>
-                            • Led the frontend development of the company's flagship product, improving performance by
-                            40%
+                            • Led the frontend development of the company's
+                            flagship product, improving performance by 40%
                           </li>
                           <li>
-                            • Implemented a component library used across multiple projects, reducing development time
-                            by 30%
+                            • Implemented a component library used across
+                            multiple projects, reducing development time by 30%
                           </li>
-                          <li>• Mentored junior developers and conducted code reviews to ensure code quality</li>
-                          <li>• Collaborated with UX designers to implement responsive and accessible interfaces</li>
+                          <li>
+                            • Mentored junior developers and conducted code
+                            reviews to ensure code quality
+                          </li>
+                          <li>
+                            • Collaborated with UX designers to implement
+                            responsive and accessible interfaces
+                          </li>
                         </ul>
                         <div className="mt-2 flex flex-wrap gap-1.5">
                           <Badge variant="outline" className="text-xs">
@@ -779,18 +886,34 @@ export default function CVBuilder() {
                         <div className="flex items-center justify-between">
                           <div>
                             <h4 className="font-medium">Frontend Developer</h4>
-                            <p className="text-sm text-muted-foreground">InnovateSoft</p>
+                            <p className="text-sm text-muted-foreground">
+                              InnovateSoft
+                            </p>
                           </div>
                           <div className="text-right">
                             <p className="text-sm">Mar 2018 - Dec 2020</p>
-                            <p className="text-sm text-muted-foreground">Boston, MA</p>
+                            <p className="text-sm text-muted-foreground">
+                              Boston, MA
+                            </p>
                           </div>
                         </div>
                         <ul className="mt-2 space-y-1 text-sm">
-                          <li>• Developed and maintained multiple client-facing web applications</li>
-                          <li>• Migrated legacy applications from jQuery to React, improving maintainability</li>
-                          <li>• Implemented automated testing, achieving 80% code coverage</li>
-                          <li>• Participated in agile development processes and sprint planning</li>
+                          <li>
+                            • Developed and maintained multiple client-facing
+                            web applications
+                          </li>
+                          <li>
+                            • Migrated legacy applications from jQuery to React,
+                            improving maintainability
+                          </li>
+                          <li>
+                            • Implemented automated testing, achieving 80% code
+                            coverage
+                          </li>
+                          <li>
+                            • Participated in agile development processes and
+                            sprint planning
+                          </li>
                         </ul>
                         <div className="mt-2 flex flex-wrap gap-1.5">
                           <Badge variant="outline" className="text-xs">
@@ -811,39 +934,56 @@ export default function CVBuilder() {
                   </div>
 
                   <div>
-                    <h3 className="text-lg font-semibold border-b pb-1">Education</h3>
+                    <h3 className="text-lg font-semibold border-b pb-1">
+                      Education
+                    </h3>
                     <div className="mt-4 space-y-4">
                       <div>
                         <div className="flex items-center justify-between">
                           <div>
-                            <h4 className="font-medium">Master of Science in Computer Science</h4>
-                            <p className="text-sm text-muted-foreground">Stanford University</p>
+                            <h4 className="font-medium">
+                              Master of Science in Computer Science
+                            </h4>
+                            <p className="text-sm text-muted-foreground">
+                              Stanford University
+                            </p>
                           </div>
                           <div className="text-right">
                             <p className="text-sm">2016 - 2018</p>
-                            <p className="text-sm text-muted-foreground">Stanford, CA</p>
+                            <p className="text-sm text-muted-foreground">
+                              Stanford, CA
+                            </p>
                           </div>
                         </div>
                         <p className="mt-1 text-sm">
-                          Specialized in Human-Computer Interaction and Web Technologies. Thesis on 'Improving Web
-                          Accessibility through Automated Testing.' GPA: 3.8/4.0
+                          Specialized in Human-Computer Interaction and Web
+                          Technologies. Thesis on 'Improving Web Accessibility
+                          through Automated Testing.' GPA: 3.8/4.0
                         </p>
                       </div>
 
                       <div>
                         <div className="flex items-center justify-between">
                           <div>
-                            <h4 className="font-medium">Bachelor of Science in Computer Engineering</h4>
-                            <p className="text-sm text-muted-foreground">University of California, Berkeley</p>
+                            <h4 className="font-medium">
+                              Bachelor of Science in Computer Engineering
+                            </h4>
+                            <p className="text-sm text-muted-foreground">
+                              University of California, Berkeley
+                            </p>
                           </div>
                           <div className="text-right">
                             <p className="text-sm">2012 - 2016</p>
-                            <p className="text-sm text-muted-foreground">Berkeley, CA</p>
+                            <p className="text-sm text-muted-foreground">
+                              Berkeley, CA
+                            </p>
                           </div>
                         </div>
                         <p className="mt-1 text-sm">
-                          Coursework included Data Structures, Algorithms, Software Engineering, and Web Development.
-                          Active member of the Computer Science Club. GPA: 3.7/4.0, Cum Laude.
+                          Coursework included Data Structures, Algorithms,
+                          Software Engineering, and Web Development. Active
+                          member of the Computer Science Club. GPA: 3.7/4.0, Cum
+                          Laude.
                         </p>
                       </div>
                     </div>
@@ -851,31 +991,47 @@ export default function CVBuilder() {
 
                   <div className="grid gap-6 sm:grid-cols-2">
                     <div>
-                      <h3 className="text-lg font-semibold border-b pb-1">Skills</h3>
+                      <h3 className="text-lg font-semibold border-b pb-1">
+                        Skills
+                      </h3>
                       <div className="mt-2">
-                        <h4 className="text-sm font-medium">Technical Skills</h4>
+                        <h4 className="text-sm font-medium">
+                          Technical Skills
+                        </h4>
                         <p className="mt-1 text-sm">
-                          React, TypeScript, JavaScript, Next.js, HTML5, CSS3, Tailwind CSS, GraphQL, REST APIs, Redux,
-                          Node.js, Express, MongoDB, Git, GitHub, Jest, Testing Library, Webpack, CI/CD, Docker
+                          React, TypeScript, JavaScript, Next.js, HTML5, CSS3,
+                          Tailwind CSS, GraphQL, REST APIs, Redux, Node.js,
+                          Express, MongoDB, Git, GitHub, Jest, Testing Library,
+                          Webpack, CI/CD, Docker
                         </p>
-                        <h4 className="mt-3 text-sm font-medium">Soft Skills</h4>
+                        <h4 className="mt-3 text-sm font-medium">
+                          Soft Skills
+                        </h4>
                         <p className="mt-1 text-sm">
-                          Team Leadership, Mentoring, Problem Solving, Communication, Project Management, Agile
-                          Methodologies, Time Management, Attention to Detail, Adaptability
+                          Team Leadership, Mentoring, Problem Solving,
+                          Communication, Project Management, Agile
+                          Methodologies, Time Management, Attention to Detail,
+                          Adaptability
                         </p>
                       </div>
                     </div>
 
                     <div>
-                      <h3 className="text-lg font-semibold border-b pb-1">Languages</h3>
+                      <h3 className="text-lg font-semibold border-b pb-1">
+                        Languages
+                      </h3>
                       <div className="mt-2 space-y-2">
                         <div className="flex justify-between">
                           <span className="text-sm">English</span>
-                          <span className="text-sm text-muted-foreground">Native</span>
+                          <span className="text-sm text-muted-foreground">
+                            Native
+                          </span>
                         </div>
                         <div className="flex justify-between">
                           <span className="text-sm">Spanish</span>
-                          <span className="text-sm text-muted-foreground">Intermediate</span>
+                          <span className="text-sm text-muted-foreground">
+                            Intermediate
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -891,7 +1047,11 @@ export default function CVBuilder() {
             <ArrowLeft className="h-4 w-4" />
             Back
           </Button>
-          <Button onClick={handleGenerate} disabled={isGenerating} className="gap-1">
+          <Button
+            onClick={handleGenerate}
+            disabled={isGenerating}
+            className="gap-1"
+          >
             {isGenerating ? (
               <>
                 <Loader2 className="h-4 w-4 animate-spin" />
@@ -907,5 +1067,5 @@ export default function CVBuilder() {
         </div>
       </div>
     </SidebarWrapper>
-  )
+  );
 }
