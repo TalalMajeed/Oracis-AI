@@ -1,0 +1,396 @@
+# Oracis AI API Documentation
+
+## Authentication Endpoints
+
+### 1. Login
+```http
+POST /api/auth/login
+Content-Type: application/json
+
+Request Body:
+{
+    "email": "john.doe@example.com",
+    "password": "userpassword123"
+}
+
+Response (200 OK):
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+    "user": {
+        "id": 1,
+        "email": "john.doe@example.com",
+        "role": "CANDIDATE"
+    }
+}
+```
+
+### 2. Register Candidate
+```http
+POST /api/auth/register/candidate
+Content-Type: application/json
+
+Request Body:
+{
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "john.doe@example.com",
+    "password": "userpassword123",
+    "phone": "1234567890"
+}
+
+Response (201 Created):
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+    "user": {
+        "id": 1,
+        "email": "john.doe@example.com",
+        "role": "CANDIDATE"
+    }
+}
+```
+
+## Candidate Endpoints
+
+### 1. Get All Candidates
+```http
+GET /api/candidates
+Authorization: Bearer <token>
+
+Response (200 OK):
+[
+    {
+        "candidate_id": 1,
+        "first_name": "John",
+        "last_name": "Doe",
+        "email": "john.doe@example.com",
+        "phone": "1234567890",
+        "resume_url": "https://example.com/resume.pdf",
+        "registration_date": "2024-03-15T10:00:00Z",
+        "status": "ACTIVE"
+    }
+]
+```
+
+### 2. Get Candidate by ID
+```http
+GET /api/candidates/:id
+Authorization: Bearer <token>
+
+Response (200 OK):
+{
+    "candidate_id": 1,
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "john.doe@example.com",
+    "phone": "1234567890",
+    "resume_url": "https://example.com/resume.pdf",
+    "registration_date": "2024-03-15T10:00:00Z",
+    "status": "ACTIVE"
+}
+```
+
+### 3. Get Candidate with Skills
+```http
+GET /api/candidates/:id/skills
+Authorization: Bearer <token>
+
+Response (200 OK):
+[
+    {
+        "candidate_id": 1,
+        "first_name": "John",
+        "last_name": "Doe",
+        "email": "john.doe@example.com",
+        "skill_id": 1,
+        "skill_name": "Java",
+        "proficiency_level": "ADVANCED",
+        "years_experience": 5
+    }
+]
+```
+
+### 4. Create Candidate
+```http
+POST /api/candidates
+Authorization: Bearer <token>
+Content-Type: application/json
+
+Request Body:
+{
+    "first_name": "Jane",
+    "last_name": "Smith",
+    "email": "jane.smith@example.com",
+    "phone": "9876543210",
+    "resume_url": "https://example.com/jane-resume.pdf",
+    "status": "ACTIVE"
+}
+
+Response (201 Created):
+{
+    "id": 2,
+    "first_name": "Jane",
+    "last_name": "Smith",
+    "email": "jane.smith@example.com",
+    "phone": "9876543210",
+    "resume_url": "https://example.com/jane-resume.pdf",
+    "status": "ACTIVE"
+}
+```
+
+## Company Endpoints
+
+### 1. Get All Companies
+```http
+GET /api/companies
+Authorization: Bearer <token>
+
+Response (200 OK):
+[
+    {
+        "company_id": 1,
+        "company_name": "Tech Solutions Inc",
+        "industry": "Information Technology",
+        "location": "New York, NY",
+        "website": "www.techsolutions.com",
+        "description": "Leading tech solutions provider",
+        "contact_person": "John Manager",
+        "contact_email": "contact@techsolutions.com",
+        "contact_phone": "555-123-4567",
+        "registration_date": "2024-03-15T10:00:00Z"
+    }
+]
+```
+
+### 2. Get Company with Jobs
+```http
+GET /api/companies/:id/jobs
+Authorization: Bearer <token>
+
+Response (200 OK):
+[
+    {
+        "company_id": 1,
+        "company_name": "Tech Solutions Inc",
+        "job_id": 1,
+        "job_title": "Senior Java Developer",
+        "job_description": "Experienced Java developer needed",
+        "location": "New York, NY",
+        "job_type": "FULL_TIME",
+        "salary_range": "$100,000 - $150,000",
+        "status": "OPEN"
+    }
+]
+```
+
+## Job Endpoints
+
+### 1. Get Job with Skills
+```http
+GET /api/jobs/:id/skills
+Authorization: Bearer <token>
+
+Response (200 OK):
+[
+    {
+        "job_id": 1,
+        "job_title": "Senior Java Developer",
+        "skill_id": 1,
+        "skill_name": "Java",
+        "importance": "REQUIRED"
+    }
+]
+```
+
+### 2. Create Job
+```http
+POST /api/jobs
+Authorization: Bearer <token>
+Content-Type: application/json
+
+Request Body:
+{
+    "company_id": 1,
+    "job_title": "Full Stack Developer",
+    "job_description": "Looking for a full stack developer",
+    "location": "Remote",
+    "job_type": "FULL_TIME",
+    "salary_range": "$90,000 - $120,000",
+    "status": "OPEN"
+}
+
+Response (201 Created):
+{
+    "id": 2,
+    "company_id": 1,
+    "job_title": "Full Stack Developer",
+    "job_description": "Looking for a full stack developer",
+    "location": "Remote",
+    "job_type": "FULL_TIME",
+    "salary_range": "$90,000 - $120,000",
+    "status": "OPEN"
+}
+```
+
+## Contract Endpoints
+
+### 1. Get Contract with Details
+```http
+GET /api/contracts/:id/details
+Authorization: Bearer <token>
+
+Response (200 OK):
+{
+    "contract_id": 1,
+    "job_id": 1,
+    "candidate_id": 1,
+    "start_date": "2024-04-01T00:00:00Z",
+    "end_date": "2025-04-01T00:00:00Z",
+    "contract_type": "FULL_TIME",
+    "salary": 120000,
+    "status": "ACTIVE",
+    "documents_url": "https://example.com/contract.pdf",
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "john.doe@example.com",
+    "job_title": "Senior Java Developer",
+    "company_name": "Tech Solutions Inc"
+}
+```
+
+## Meeting Endpoints
+
+### 1. Get Meeting with Details
+```http
+GET /api/meetings/:id/details
+Authorization: Bearer <token>
+
+Response (200 OK):
+{
+    "meeting_id": 1,
+    "candidate_id": 1,
+    "job_id": 1,
+    "company_id": 1,
+    "meeting_date": "2024-03-20T14:00:00Z",
+    "meeting_time": "14:00",
+    "meeting_type": "VIDEO_INTERVIEW",
+    "location": "Zoom",
+    "notes": "Technical interview",
+    "status": "SCHEDULED",
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "john.doe@example.com",
+    "job_title": "Senior Java Developer",
+    "company_name": "Tech Solutions Inc"
+}
+```
+
+### 2. Create Meeting
+```http
+POST /api/meetings
+Authorization: Bearer <token>
+Content-Type: application/json
+
+Request Body:
+{
+    "candidate_id": 1,
+    "job_id": 1,
+    "company_id": 1,
+    "meeting_date": "2024-03-20",
+    "meeting_time": "14:00",
+    "meeting_type": "VIDEO_INTERVIEW",
+    "location": "Zoom",
+    "notes": "Technical interview",
+    "status": "SCHEDULED"
+}
+
+Response (201 Created):
+{
+    "id": 2,
+    "candidate_id": 1,
+    "job_id": 1,
+    "company_id": 1,
+    "meeting_date": "2024-03-20T00:00:00Z",
+    "meeting_time": "14:00",
+    "meeting_type": "VIDEO_INTERVIEW",
+    "location": "Zoom",
+    "notes": "Technical interview",
+    "status": "SCHEDULED"
+}
+```
+
+## Skill Endpoints
+
+### 1. Get All Skills
+```http
+GET /api/skills
+Authorization: Bearer <token>
+
+Response (200 OK):
+[
+    {
+        "skill_id": 1,
+        "skill_name": "Java",
+        "skill_category": "Programming",
+        "description": "Java programming language"
+    }
+]
+```
+
+### 2. Create Skill
+```http
+POST /api/skills
+Authorization: Bearer <token>
+Content-Type: application/json
+
+Request Body:
+{
+    "skill_name": "Python",
+    "skill_category": "Programming",
+    "description": "Python programming language"
+}
+
+Response (201 Created):
+{
+    "id": 2,
+    "skill_name": "Python",
+    "skill_category": "Programming",
+    "description": "Python programming language"
+}
+```
+
+## Error Responses
+
+### 401 Unauthorized
+```json
+{
+    "message": "Authentication token required"
+}
+```
+
+### 403 Forbidden
+```json
+{
+    "message": "Invalid or expired token"
+}
+```
+
+### 404 Not Found
+```json
+{
+    "message": "Record not found"
+}
+```
+
+### 500 Internal Server Error
+```json
+{
+    "message": "Internal server error"
+}
+```
+
+## Notes
+1. All endpoints except login and register require a valid JWT token in the Authorization header
+2. Admin-only endpoints require the user to have the 'ADMIN' role
+3. Dates are returned in ISO 8601 format
+4. All IDs are auto-generated by the database
+5. Status fields have specific allowed values as defined in the types 
