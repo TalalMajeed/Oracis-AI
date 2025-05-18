@@ -32,7 +32,19 @@ export default function LoginPage() {
 
     try {
       await login(email, password);
-      router.push("/dashboard");
+
+      // Get user from local storage
+      const user = JSON.parse(localStorage.getItem("user") || "{}");
+
+      // Redirect based on user role
+      if (user.role === "candidate") {
+        router.push("/dashboard/candidate");
+      } else if (user.role === "employer") {
+        router.push("/dashboard/employer");
+      } else {
+        // Fallback if role is not set or not recognized
+        router.push("/dashboard");
+      }
     } catch (err) {
       setError("Invalid email or password");
     } finally {

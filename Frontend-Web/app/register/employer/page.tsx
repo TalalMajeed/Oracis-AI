@@ -56,7 +56,7 @@ export default function EmployerRegistration() {
 
       // Store the token
       localStorage.setItem("token", data.token);
-      router.push("/employer/dashboard");
+      router.push("/dashboard/employer");
     } catch (err: any) {
       setError(err.message);
     } finally {

@@ -51,7 +51,7 @@ export default function CandidateRegistration() {
 
       // Store the token
       localStorage.setItem("token", data.token);
-      router.push("/candidate/dashboard");
+      router.push("/dashboard/candidate");
     } catch (err: any) {
       setError(err.message);
     } finally {

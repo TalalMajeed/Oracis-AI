@@ -40,6 +40,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useAuth } from "@/lib/auth-context";
+import { useRouter } from "next/navigation";
 
 interface SidebarWrapperProps {
   children: React.ReactNode;
@@ -48,21 +50,23 @@ interface SidebarWrapperProps {
 
 export function SidebarWrapper({ children, userType }: SidebarWrapperProps) {
   const pathname = usePathname();
+  const { user, logout } = useAuth();
+  const router = useRouter();
 
   const candidateNavItems = [
     {
       title: "Dashboard",
-      href: "/candidate",
+      href: "/dashboard/candidate",
       icon: Home,
     },
     {
       title: "AI Recommender",
-      href: "/candidate/ai-recommender",
+      href: "/dashboard/candidate/ai-recommender",
       icon: Zap,
     },
     {
       title: "Search Jobs",
-      href: "/candidate/search",
+      href: "/dashboard/candidate/search",
       icon: Search,
     },
     {
@@ -130,11 +134,21 @@ export function SidebarWrapper({ children, userType }: SidebarWrapperProps) {
     },
   ];
 
+  const handleLogout = () => {
+    logout();
+    router.push("/login");
+  };
+
   const navItems =
     userType === "candidate" ? candidateNavItems : employerNavItems;
-  const userName = userType === "candidate" ? "John Doe" : "Acme Corp";
-  const userRole =
-    userType === "candidate" ? "Software Engineer" : "Technology";
+
+  // Get user name from context, or use a default
+  const userName =
+    user?.email?.split("@")[0] ||
+    (userType === "candidate" ? "Candidate" : "Company");
+
+  // For a real application, you'd likely have more user details in the user object
+  const userRole = userType === "candidate" ? "Job Seeker" : "Employer";
 
   return (
     <SidebarProvider>
@@ -218,11 +232,9 @@ export function SidebarWrapper({ children, userType }: SidebarWrapperProps) {
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem asChild>
-                  <Link href="/">
-                    <LogOut className="mr-2 h-4 w-4" />
-                    <span>Log out</span>
-                  </Link>
+                <DropdownMenuItem onClick={handleLogout}>
+                  <LogOut className="mr-2 h-4 w-4" />
+                  <span>Log out</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

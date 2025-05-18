@@ -1,111 +1,143 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { Briefcase, Eye, MessageSquare, Zap } from "lucide-react";
 import { SidebarWrapper } from "@/components/sidebar";
 import { StatCard } from "@/components/dashboard/stat-card";
 import { ActivityTimeline } from "@/components/dashboard/activity-timeline";
 import { RecommendationCard } from "@/components/dashboard/recommendation-card";
+import { useAuth } from "@/lib/auth-context";
 
-// Mock data for activity timeline
-const activityEvents = [
-  {
-    id: "1",
-    title: "Applied to Senior Frontend Developer",
-    description: "TechCorp Inc.",
-    time: "2 hours ago",
-    type: "application" as const,
-  },
-  {
-    id: "2",
-    title: "Your profile was viewed by Google",
-    description: "Recruiter from Google viewed your profile",
-    time: "Yesterday",
-    type: "view" as const,
-  },
-  {
-    id: "3",
-    title: "Message from Sarah at InnovateSoft",
-    description: "Regarding your application for Full Stack Engineer",
-    time: "2 days ago",
-    type: "message" as const,
-  },
-  {
-    id: "4",
-    title: "AI recommended a new job",
-    description: "UI/UX Developer at DesignHub matches your skills",
-    time: "3 days ago",
-    type: "recommendation" as const,
-  },
-];
+// Define types for our data
+interface ActivityEvent {
+  id: string;
+  title: string;
+  description: string;
+  time: string;
+  type: "application" | "view" | "message" | "recommendation";
+}
 
-// Mock data for job recommendations
-const jobRecommendations = [
-  {
-    id: "1",
-    title: "Senior Frontend Developer",
-    company: "TechCorp Inc.",
-    location: "San Francisco, CA",
-    matchScore: 92,
-    salary: "$120K - $150K",
-    skills: ["React", "TypeScript", "Next.js", "GraphQL", "UI/UX"],
-    postedAt: "2 days ago",
-  },
-  {
-    id: "2",
-    title: "Full Stack Engineer",
-    company: "InnovateSoft",
-    location: "Remote",
-    matchScore: 87,
-    salary: "$110K - $140K",
-    skills: ["Node.js", "React", "MongoDB", "AWS", "Docker"],
-    postedAt: "1 week ago",
-  },
-  {
-    id: "3",
-    title: "UI/UX Developer",
-    company: "DesignHub",
-    location: "New York, NY",
-    matchScore: 78,
-    salary: "$90K - $120K",
-    skills: ["Figma", "React", "CSS", "User Research", "Prototyping"],
-    postedAt: "3 days ago",
-  },
-];
+interface JobRecommendation {
+  id: string;
+  title: string;
+  company: string;
+  location: string;
+  matchScore: number;
+  salary: string;
+  skills: string[];
+  postedAt: string;
+}
+
+// Default empty data
+const emptyActivityEvents: ActivityEvent[] = [];
+const emptyJobRecommendations: JobRecommendation[] = [];
 
 export default function CandidateDashboard() {
+  const { user } = useAuth();
+  const [activityEvents, setActivityEvents] = useState(emptyActivityEvents);
+  const [jobRecommendations, setJobRecommendations] = useState(
+    emptyJobRecommendations
+  );
+  const [profileStats, setProfileStats] = useState({
+    views: "0",
+    applications: "0",
+    messages: "0",
+    matchScore: "0%",
+  });
+
+  useEffect(() => {
+    // In a real app, you would fetch this data from your API
+    // For now, we'll just set some example data if the user exists
+    if (user?.id) {
+      // This is where you would make API calls to fetch the user's real data
+      // For example: fetchUserActivityEvents(user.id), fetchUserRecommendations(user.id), etc.
+
+      // For demonstration, we'll just populate with some example data
+      setActivityEvents([
+        {
+          id: "1",
+          title: "Applied to Senior Frontend Developer",
+          description: "TechCorp Inc.",
+          time: "2 hours ago",
+          type: "application" as const,
+        },
+        {
+          id: "2",
+          title: "Your profile was viewed by Google",
+          description: "Recruiter from Google viewed your profile",
+          time: "Yesterday",
+          type: "view" as const,
+        },
+      ]);
+
+      setJobRecommendations([
+        {
+          id: "1",
+          title: "Senior Frontend Developer",
+          company: "TechCorp Inc.",
+          location: "San Francisco, CA",
+          matchScore: 92,
+          salary: "$120K - $150K",
+          skills: ["React", "TypeScript", "Next.js", "GraphQL", "UI/UX"],
+          postedAt: "2 days ago",
+        },
+        {
+          id: "2",
+          title: "Full Stack Engineer",
+          company: "InnovateSoft",
+          location: "Remote",
+          matchScore: 87,
+          salary: "$110K - $140K",
+          skills: ["Node.js", "React", "MongoDB", "AWS", "Docker"],
+          postedAt: "1 week ago",
+        },
+      ]);
+
+      setProfileStats({
+        views: "128",
+        applications: "24",
+        messages: "8",
+        matchScore: "85%",
+      });
+    }
+  }, [user?.id]);
+
   return (
     <SidebarWrapper userType="candidate">
       <div className="space-y-6">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
           <p className="text-muted-foreground">
-            Welcome back, John! Here's what's happening with your job search.
+            Welcome back, {user?.email || "Guest"}! Here's what's happening with
+            your job search.
           </p>
         </div>
 
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           <StatCard
             title="Profile Views"
-            value="128"
+            value={profileStats.views}
             description="Total profile views"
             icon={Eye}
             trend={{ value: 12, isPositive: true }}
           />
           <StatCard
             title="Applications"
-            value="24"
+            value={profileStats.applications}
             description="Jobs you've applied to"
             icon={Briefcase}
             trend={{ value: 4, isPositive: true }}
           />
           <StatCard
             title="Messages"
-            value="8"
+            value={profileStats.messages}
             description="Unread messages"
             icon={MessageSquare}
             trend={{ value: 2, isPositive: true }}
           />
           <StatCard
             title="Match Score"
-            value="85%"
+            value={profileStats.matchScore}
             description="Average AI match score"
             icon={Zap}
             trend={{ value: 5, isPositive: true }}
@@ -118,15 +150,23 @@ export default function CandidateDashboard() {
               <h2 className="text-xl font-semibold mb-4">
                 AI Job Recommendations
               </h2>
-              <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2">
-                {jobRecommendations.slice(0, 2).map((job) => (
-                  <RecommendationCard
-                    key={job.id}
-                    recommendation={job}
-                    type="job"
-                  />
-                ))}
-              </div>
+              {jobRecommendations.length > 0 ? (
+                <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2">
+                  {jobRecommendations.slice(0, 2).map((job) => (
+                    <RecommendationCard
+                      key={job.id}
+                      recommendation={job}
+                      type="job"
+                    />
+                  ))}
+                </div>
+              ) : (
+                <div className="rounded-lg border bg-card p-4 text-center">
+                  <p className="text-muted-foreground">
+                    No recommendations available yet.
+                  </p>
+                </div>
+              )}
             </div>
 
             <div>
@@ -203,11 +243,6 @@ export default function CandidateDashboard() {
                 <div className="h-[20px] w-12 rounded bg-primary/80"></div>
                 <span className="mt-2 text-xs">Offer</span>
                 <span className="absolute top-0 text-xs font-medium">4</span>
-              </div>
-              <div className="relative flex flex-col items-center">
-                <div className="h-[10px] w-12 rounded bg-primary"></div>
-                <span className="mt-2 text-xs">Accepted</span>
-                <span className="absolute top-0 text-xs font-medium">2</span>
               </div>
             </div>
           </div>
