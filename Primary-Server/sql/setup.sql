@@ -110,5 +110,20 @@ CREATE TABLE job_skills (
     FOREIGN KEY (skill_id) REFERENCES skills(skill_id)
 );
 
+-- Create CV table
+CREATE TABLE cvs (
+    cv_id INT AUTO_INCREMENT PRIMARY KEY,
+    candidate_id INT UNIQUE,
+    personal_info JSON,
+    professional_summary TEXT,
+    work_experience JSON,
+    education JSON,
+    skills JSON,
+    languages JSON,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (candidate_id) REFERENCES candidates(candidate_id)
+);
+
 -- Commit all changes
 COMMIT;

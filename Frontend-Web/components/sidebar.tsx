@@ -126,7 +126,7 @@ export function SidebarWrapper({ children, userType }: SidebarWrapperProps) {
 
   return (
     <SidebarProvider>
-      <div className="flex min-h-screen">
+      <div className="flex min-h-screen w-full">
         <Sidebar>
           <SidebarHeader className="border-b border-border">
             <div className="flex items-center gap-2 px-2">
@@ -218,14 +218,18 @@ export function SidebarWrapper({ children, userType }: SidebarWrapperProps) {
             </DropdownMenu>
           </SidebarFooter>
         </Sidebar>
-        <div className="flex-1 overflow-auto">
+        <div className="flex-1 overflow-auto w-full min-w-0">
           <div className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b border-border bg-background px-6">
             <SidebarTrigger />
             <div className="ml-auto flex items-center gap-4">
-              <Button variant="outline" size="sm">
-                Upgrade Plan
-              </Button>
-              <Button size="sm">
+              <Button
+                size="sm"
+                onClick={() =>
+                  userType === "candidate"
+                    ? router.push("/dashboard/candidate/cv-builder")
+                    : router.push("/dashboard/employer/jobs")
+                }
+              >
                 {userType === "candidate" ? "Create CV" : "Post Job"}
               </Button>
             </div>
