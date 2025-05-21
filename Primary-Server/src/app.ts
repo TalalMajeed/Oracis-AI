@@ -15,8 +15,19 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
-app.use(helmet());
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL || "http://localhost:3000",
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+app.use(
+  helmet({
+    crossOriginResourcePolicy: { policy: "cross-origin" },
+  })
+);
 
 // Rate limiting
 const limiter = rateLimit({
@@ -27,6 +38,24 @@ app.use(limiter);
 
 // Routes
 app.use("/api/cv", cvRoutes);
+
+// Error handling middleware
+app.use(
+  (
+    err: any,
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction
+  ) => {
+    console.error(err.stack);
+    res.status(500).json({ message: "Something broke!" });
+  }
+);
+
+// 404 handler
+app.use((req: express.Request, res: express.Response) => {
+  res.status(404).json({ message: "Not Found" });
+});
 
 // Initialize database and Redis
 const initializeApp = async () => {

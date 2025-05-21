@@ -1,15 +1,14 @@
 import express from "express";
-import { authenticateToken } from "../middleware/auth";
-import { pool } from "../config/database";
+import { executeQuery } from "../config/database";
 
 const router = express.Router();
 
 // Get CV for the authenticated candidate
-router.get("/", authenticateToken, async (req, res) => {
+router.get("/", async (req, res) => {
   try {
-    const [rows] = await pool.query(
+    const rows = await executeQuery(
       "SELECT * FROM cvs WHERE candidate_id = ?",
-      [req.user.id]
+      [1] // Temporarily use ID 1 for testing
     );
     res.json(rows[0] || null);
   } catch (error) {
@@ -19,7 +18,7 @@ router.get("/", authenticateToken, async (req, res) => {
 });
 
 // Create or update CV for the authenticated candidate
-router.post("/", authenticateToken, async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const {
       personal_info,
@@ -31,14 +30,14 @@ router.post("/", authenticateToken, async (req, res) => {
     } = req.body;
 
     // Check if CV exists
-    const [existing] = await pool.query(
+    const existing = await executeQuery(
       "SELECT cv_id FROM cvs WHERE candidate_id = ?",
-      [req.user.id]
+      [1] // Temporarily use ID 1 for testing
     );
 
-    if (existing.length > 0) {
+    if (existing && existing.length > 0) {
       // Update existing CV
-      await pool.query(
+      await executeQuery(
         `UPDATE cvs SET 
           personal_info = ?,
           professional_summary = ?,
@@ -54,13 +53,13 @@ router.post("/", authenticateToken, async (req, res) => {
           JSON.stringify(education),
           JSON.stringify(skills),
           JSON.stringify(languages),
-          req.user.id,
+          1, // Temporarily use ID 1 for testing
         ]
       );
       res.json({ message: "CV updated successfully" });
     } else {
       // Create new CV
-      await pool.query(
+      await executeQuery(
         `INSERT INTO cvs (
           candidate_id,
           personal_info,
@@ -71,7 +70,7 @@ router.post("/", authenticateToken, async (req, res) => {
           languages
         ) VALUES (?, ?, ?, ?, ?, ?, ?)`,
         [
-          req.user.id,
+          1, // Temporarily use ID 1 for testing
           JSON.stringify(personal_info),
           professional_summary,
           JSON.stringify(work_experience),

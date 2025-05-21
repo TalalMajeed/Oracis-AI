@@ -122,7 +122,15 @@ export default function CVBuilder() {
 
   const fetchCV = async () => {
     try {
-      const response = await fetch("/api/cv");
+      const token = localStorage.getItem("token");
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/cv`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       if (response.ok) {
         const data = await response.json();
         if (data) {
@@ -135,6 +143,9 @@ export default function CVBuilder() {
             languages: data.languages,
           });
         }
+      } else if (response.status === 401) {
+        // Handle unauthorized access
+        router.push("/login");
       }
     } catch (error) {
       console.error("Error fetching CV:", error);
@@ -151,19 +162,27 @@ export default function CVBuilder() {
   const handleSave = async () => {
     setIsSaving(true);
     try {
-      const response = await fetch("/api/cv", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(cvData),
-      });
+      const token = localStorage.getItem("token");
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/cv`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(cvData),
+        }
+      );
 
       if (response.ok) {
         toast({
           title: "Success",
           description: "CV saved successfully",
         });
+      } else if (response.status === 401) {
+        // Handle unauthorized access
+        router.push("/login");
       } else {
         throw new Error("Failed to save CV");
       }
