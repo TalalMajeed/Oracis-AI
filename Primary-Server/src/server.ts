@@ -37,6 +37,7 @@ app.use(express.static(path.join(__dirname, "../public")));
 app.use("/api/auth", authRoutes);
 app.use("/api", entityRoutes);
 app.use("/api/cv", cvRoutes);
+app.use("/api/entities", entityRoutes);
 
 // Root route
 app.get("/", (req, res) => {

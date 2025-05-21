@@ -23,6 +23,7 @@ const meetingController = new MeetingController();
 const skillController = new SkillController();
 
 // Candidate routes
+router.get("/candidates/me", authenticateToken, candidateController.getMe);
 router.get("/candidates", authenticateToken, candidateController.getAll);
 router.get("/candidates/:id", authenticateToken, candidateController.getById);
 router.get(

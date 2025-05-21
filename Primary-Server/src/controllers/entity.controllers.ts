@@ -8,6 +8,32 @@ export class CandidateController extends BaseController {
     super("candidates", "candidate_id");
   }
 
+  // Get current user's profile
+  getMe = async (req: Request, res: Response) => {
+    try {
+      // Access user ID from the authenticated request
+      const userId = req.user?.userId;
+
+      if (!userId) {
+        return res.status(401).json({ message: "User not authenticated" });
+      }
+
+      const result = await executeQuery(
+        "SELECT * FROM candidates WHERE candidate_id = ?",
+        [userId]
+      );
+
+      if (!result || result.length === 0) {
+        return res.status(404).json({ message: "Candidate not found" });
+      }
+
+      res.json(result[0]);
+    } catch (error) {
+      console.error("Error fetching candidate profile:", error);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  };
+
   // Get candidate with skills
   getWithSkills = async (req: Request, res: Response) => {
     try {
