@@ -17,15 +17,15 @@ export class CandidateController extends BaseController {
                  FROM candidates c
                  LEFT JOIN candidate_skills cs ON c.candidate_id = cs.candidate_id
                  LEFT JOIN skills s ON cs.skill_id = s.skill_id
-                 WHERE c.candidate_id = :id`,
-        { id }
+                 WHERE c.candidate_id = ?`,
+        [id]
       );
 
-      if (!result.rows || result.rows.length === 0) {
+      if (!result || result.length === 0) {
         return res.status(404).json({ message: "Candidate not found" });
       }
 
-      res.json(result.rows);
+      res.json(result);
     } catch (error) {
       console.error("Error fetching candidate with skills:", error);
       res.status(500).json({ message: "Internal server error" });
@@ -47,15 +47,15 @@ export class CompanyController extends BaseController {
         `SELECT c.*, j.*
                  FROM companies c
                  LEFT JOIN jobs j ON c.company_id = j.company_id
-                 WHERE c.company_id = :id`,
-        { id }
+                 WHERE c.company_id = ?`,
+        [id]
       );
 
-      if (!result.rows || result.rows.length === 0) {
+      if (!result || result.length === 0) {
         return res.status(404).json({ message: "Company not found" });
       }
 
-      res.json(result.rows);
+      res.json(result);
     } catch (error) {
       console.error("Error fetching company with jobs:", error);
       res.status(500).json({ message: "Internal server error" });
@@ -78,15 +78,15 @@ export class JobController extends BaseController {
                  FROM jobs j
                  LEFT JOIN job_skills js ON j.job_id = js.job_id
                  LEFT JOIN skills s ON js.skill_id = s.skill_id
-                 WHERE j.job_id = :id`,
-        { id }
+                 WHERE j.job_id = ?`,
+        [id]
       );
 
-      if (!result.rows || result.rows.length === 0) {
+      if (!result || result.length === 0) {
         return res.status(404).json({ message: "Job not found" });
       }
 
-      res.json(result.rows);
+      res.json(result);
     } catch (error) {
       console.error("Error fetching job with skills:", error);
       res.status(500).json({ message: "Internal server error" });
@@ -111,15 +111,15 @@ export class ContractController extends BaseController {
                  JOIN candidates ca ON c.candidate_id = ca.candidate_id
                  JOIN jobs j ON c.job_id = j.job_id
                  JOIN companies co ON j.company_id = co.company_id
-                 WHERE c.contract_id = :id`,
-        { id }
+                 WHERE c.contract_id = ?`,
+        [id]
       );
 
-      if (!result.rows || result.rows.length === 0) {
+      if (!result || result.length === 0) {
         return res.status(404).json({ message: "Contract not found" });
       }
 
-      res.json(result.rows[0]);
+      res.json(result[0]);
     } catch (error) {
       console.error("Error fetching contract details:", error);
       res.status(500).json({ message: "Internal server error" });
@@ -144,15 +144,15 @@ export class MeetingController extends BaseController {
                  JOIN candidates c ON m.candidate_id = c.candidate_id
                  JOIN jobs j ON m.job_id = j.job_id
                  JOIN companies co ON m.company_id = co.company_id
-                 WHERE m.meeting_id = :id`,
-        { id }
+                 WHERE m.meeting_id = ?`,
+        [id]
       );
 
-      if (!result.rows || result.rows.length === 0) {
+      if (!result || result.length === 0) {
         return res.status(404).json({ message: "Meeting not found" });
       }
 
-      res.json(result.rows[0]);
+      res.json(result[0]);
     } catch (error) {
       console.error("Error fetching meeting details:", error);
       res.status(500).json({ message: "Internal server error" });

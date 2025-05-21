@@ -152,7 +152,7 @@ export default function EmployerRegistration() {
                 required
                 value={formData.contact_person}
                 onChange={handleChange}
-                placeholder="John Manager"
+                placeholder="Enter your contact person"
               />
             </div>
             <div className="space-y-2">
@@ -164,7 +164,7 @@ export default function EmployerRegistration() {
                 required
                 value={formData.contact_email}
                 onChange={handleChange}
-                placeholder="contact@company.com"
+                placeholder="Enter your contact email"
               />
             </div>
             <div className="space-y-2">
@@ -176,7 +176,7 @@ export default function EmployerRegistration() {
                 required
                 value={formData.contact_phone}
                 onChange={handleChange}
-                placeholder="555-123-4567"
+                placeholder="Enter your contact phone"
               />
             </div>
             <div className="space-y-2">
@@ -188,7 +188,7 @@ export default function EmployerRegistration() {
                 required
                 value={formData.password}
                 onChange={handleChange}
-                placeholder="••••••••"
+                placeholder="Enter your password"
               />
             </div>
             {error && <div className="text-red-500 text-sm">{error}</div>}

@@ -144,11 +144,10 @@ export function SidebarWrapper({ children, userType }: SidebarWrapperProps) {
 
   // Get user name from context, or use a default
   const userName =
+    user?.name ||
     user?.email?.split("@")[0] ||
     (userType === "candidate" ? "Candidate" : "Company");
-
-  // For a real application, you'd likely have more user details in the user object
-  const userRole = userType === "candidate" ? "Job Seeker" : "Employer";
+  const userRole = user?.type === "candidate" ? "Job Seeker" : "Employer";
 
   return (
     <SidebarProvider>
@@ -211,7 +210,11 @@ export function SidebarWrapper({ children, userType }: SidebarWrapperProps) {
                     </AvatarFallback>
                   </Avatar>
                   <div className="flex flex-col items-start text-left">
-                    <span className="text-sm font-medium">{userName}</span>
+                    <span className="text-sm font-medium">
+                      {userName.length > 15
+                        ? `${userName.slice(0, 15)}...`
+                        : userName}
+                    </span>
                     <span className="text-xs text-muted-foreground">
                       {userRole}
                     </span>

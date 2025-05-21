@@ -1,23 +1,19 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from "react";
-import { authAPI } from "./api-client";
+import React, { createContext, useContext, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 interface User {
-  id: number;
+  id: string;
   email: string;
-  role: string;
-}
-
-interface LoginResponse {
-  token: string;
-  user: User;
+  name: string;
+  type: "candidate" | "employer";
 }
 
 interface AuthContextType {
   user: User | null;
   token: string | null;
-  login: (email: string, password: string) => Promise<void>;
+  login: (token: string, userData: User) => void;
   logout: () => void;
   isAuthenticated: boolean;
 }
@@ -27,48 +23,45 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string | null>(null);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
-    // Check for token in localStorage on mount
+    // Check for token and user data in localStorage on mount
     const storedToken = localStorage.getItem("token");
     const storedUser = localStorage.getItem("user");
 
     if (storedToken && storedUser) {
       setToken(storedToken);
       setUser(JSON.parse(storedUser));
-      setIsAuthenticated(true);
     }
   }, []);
 
-  const login = async (email: string, password: string) => {
-    try {
-      const response = (await authAPI.login(email, password)) as LoginResponse;
-      const { token, user } = response;
-
-      localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify(user));
-
-      setToken(token);
-      setUser(user);
-      setIsAuthenticated(true);
-    } catch (error) {
-      console.error("Login failed:", error);
-      throw error;
-    }
+  const login = (newToken: string, userData: User) => {
+    setToken(newToken);
+    setUser(userData);
+    localStorage.setItem("token", newToken);
+    localStorage.setItem("user", JSON.stringify(userData));
+    // Set token in cookies
+    document.cookie = `token=${newToken}; path=/`;
   };
 
   const logout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
     setToken(null);
     setUser(null);
-    setIsAuthenticated(false);
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    router.push("/login");
   };
 
   return (
     <AuthContext.Provider
-      value={{ user, token, login, logout, isAuthenticated }}
+      value={{
+        user,
+        token,
+        login,
+        logout,
+        isAuthenticated: !!token,
+      }}
     >
       {children}
     </AuthContext.Provider>

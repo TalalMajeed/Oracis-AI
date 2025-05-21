@@ -1,34 +1,43 @@
-import oracledb from "oracledb";
+import mysql from "mysql2/promise";
 import dotenv from "dotenv";
+import fs from "fs";
+import path from "path";
 
 dotenv.config();
 
 // Database connection configuration
 const dbConfig = {
-  user: process.env.DB_USER || "admin_user",
-  password: process.env.DB_PASSWORD || "Admin_Password1",
-  connectString: process.env.DB_CONNECT_STRING || "localhost:1521/XEPDB1",
+  host: process.env.DB_HOST || "localhost",
+  user: process.env.DB_USER || "root",
+  password: process.env.DB_PASSWORD || "12345",
+  database: process.env.DB_NAME || "oracis_ai",
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
 };
 
 // Create connection pool
-let pool: oracledb.Pool;
+let pool: mysql.Pool;
 
 // Execute query helper function
-export const executeQuery = async (sql: string, params: any = {}) => {
+export const executeQuery = async <T = any>(
+  sql: string,
+  params: any = {}
+): Promise<T[]> => {
   let connection;
   try {
     connection = await pool.getConnection();
-    const result = await connection.execute(sql, params);
-    return result;
+    const [rows] = await connection.execute(sql, params);
+    return rows as T[];
   } catch (error) {
     console.error("Database error:", error);
     throw error;
   } finally {
     if (connection) {
       try {
-        await connection.close();
+        connection.release();
       } catch (error) {
-        console.error("Error closing connection:", error);
+        console.error("Error releasing connection:", error);
       }
     }
   }
@@ -37,16 +46,56 @@ export const executeQuery = async (sql: string, params: any = {}) => {
 // Initialize database connection
 export const initializeDatabase = async () => {
   try {
-    pool = await oracledb.createPool({
-      ...dbConfig,
-      poolMin: 2,
-      poolMax: 10,
-      poolIncrement: 1,
-      thin: true, // Enable thin mode
-    });
+    // First create a pool without database selected
+    const { database, ...initialConfig } = dbConfig;
+    pool = mysql.createPool(initialConfig);
+
+    // Check if database exists
+    const connection = await pool.getConnection();
+    const [databases] = await connection.execute(
+      `SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = ?`,
+      [process.env.DB_NAME || "oracis_ai"]
+    );
+    const dbExists = (databases as any[]).length > 0;
+
+    if (!dbExists) {
+      // Create database and run setup.sql
+      await connection.execute(
+        `CREATE DATABASE ${process.env.DB_NAME || "oracis_ai"}`
+      );
+      console.log("Database created, running setup script...");
+
+      // Read and execute setup.sql
+      const setupSql = fs.readFileSync(
+        path.join(__dirname, "../../sql/setup.sql"),
+        "utf8"
+      );
+      const statements = setupSql
+        .split(";")
+        .map((statement) => statement.trim())
+        .filter((statement) => statement.length > 0);
+
+      for (const statement of statements) {
+        try {
+          await connection.query(statement);
+        } catch (error) {
+          console.error("Error executing statement:", error);
+        }
+      }
+    }
+    connection.release();
+
+    // Create new pool with database selected
+    pool = mysql.createPool(dbConfig);
+
+    // Test the connection
+    const testConnection = await pool.getConnection();
+    await testConnection.execute("SELECT 1");
+    testConnection.release();
+
     console.log("Database connection pool initialized successfully");
   } catch (error) {
-    console.error("Error initializing database connection pool:", error);
+    console.error("Error initializing database:", error);
     throw error;
   }
 };
@@ -55,8 +104,8 @@ export const testConnection = async () => {
   let connection;
   try {
     connection = await pool.getConnection();
-    const result = await connection.execute("SELECT 1 FROM DUAL");
-    if (result && result.rows && result.rows.length > 0) {
+    const [rows] = await connection.execute("SELECT 1");
+    if (rows) {
       console.log("Database connection test successful");
       return true;
     }
@@ -67,9 +116,9 @@ export const testConnection = async () => {
   } finally {
     if (connection) {
       try {
-        await connection.close();
+        connection.release();
       } catch (err) {
-        console.error("Error closing test connection:", err);
+        console.error("Error releasing test connection:", err);
       }
     }
   }
@@ -86,10 +135,10 @@ export const getConnection = async () => {
 
 export const closePool = async () => {
   try {
-    await pool.close();
-    console.log("Oracle Database pool closed successfully");
+    await pool.end();
+    console.log("MySQL Database pool closed successfully");
   } catch (error) {
-    console.error("Error closing Oracle Database pool:", error);
+    console.error("Error closing MySQL Database pool:", error);
     throw error;
   }
 };

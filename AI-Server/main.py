@@ -39,7 +39,6 @@ def root():
         <h1>Oracis AI - AI Server</h1>
         <p>Version: 1.0.0 (Beta Testing)</p>
         <p>This API server provides LinkedIn profile analysis and job matching services.</p>
-        <a href="/api/docs">View API Documentation</a>
     </body>
     </html>
     """

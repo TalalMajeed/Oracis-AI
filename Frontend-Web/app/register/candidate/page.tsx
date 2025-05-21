@@ -87,7 +87,7 @@ export default function CandidateRegistration() {
                   required
                   value={formData.first_name}
                   onChange={handleChange}
-                  placeholder="John"
+                  placeholder="Enter your first name"
                 />
               </div>
               <div className="space-y-2">
@@ -99,7 +99,7 @@ export default function CandidateRegistration() {
                   required
                   value={formData.last_name}
                   onChange={handleChange}
-                  placeholder="Doe"
+                  placeholder="Enter your last name"
                 />
               </div>
             </div>
@@ -112,7 +112,7 @@ export default function CandidateRegistration() {
                 required
                 value={formData.email}
                 onChange={handleChange}
-                placeholder="john.doe@example.com"
+                placeholder="Enter your email"
               />
             </div>
             <div className="space-y-2">
@@ -124,7 +124,7 @@ export default function CandidateRegistration() {
                 required
                 value={formData.phone}
                 onChange={handleChange}
-                placeholder="1234567890"
+                placeholder="Enter your phone number"
               />
             </div>
             <div className="space-y-2">
@@ -136,7 +136,7 @@ export default function CandidateRegistration() {
                 required
                 value={formData.password}
                 onChange={handleChange}
-                placeholder="••••••••"
+                placeholder="Enter your password"
               />
             </div>
             {error && <div className="text-red-500 text-sm">{error}</div>}

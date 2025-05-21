@@ -14,7 +14,7 @@ export class BaseController {
   getAll = async (req: Request, res: Response) => {
     try {
       const result = await executeQuery(`SELECT * FROM ${this.tableName}`);
-      res.json(result.rows);
+      res.json(result);
     } catch (error) {
       console.error(`Error fetching ${this.tableName}:`, error);
       res.status(500).json({ message: "Internal server error" });
@@ -26,15 +26,15 @@ export class BaseController {
     try {
       const id = req.params.id;
       const result = await executeQuery(
-        `SELECT * FROM ${this.tableName} WHERE ${this.idColumn} = :id`,
-        { id }
+        `SELECT * FROM ${this.tableName} WHERE ${this.idColumn} = ?`,
+        [id]
       );
 
-      if (!result.rows || result.rows.length === 0) {
+      if (!result || result.length === 0) {
         return res.status(404).json({ message: "Record not found" });
       }
 
-      res.json(result.rows[0]);
+      res.json(result[0]);
     } catch (error) {
       console.error(`Error fetching ${this.tableName} by ID:`, error);
       res.status(500).json({ message: "Internal server error" });
@@ -45,18 +45,19 @@ export class BaseController {
   create = async (req: Request, res: Response) => {
     try {
       const columns = Object.keys(req.body).join(", ");
-      const values = Object.keys(req.body)
-        .map((key) => `:${key}`)
+      const placeholders = Object.keys(req.body)
+        .map(() => "?")
         .join(", ");
-      const params = req.body;
+      const values = Object.values(req.body);
 
       const result = await executeQuery(
-        `INSERT INTO ${this.tableName} (${columns}) VALUES (${values}) RETURNING ${this.idColumn} INTO :id`,
-        { ...params, id: { dir: 3000, type: 2002 } }
+        `INSERT INTO ${this.tableName} (${columns}) VALUES (${placeholders})`,
+        values
       );
 
+      const insertId = (result as any).insertId;
       res.status(201).json({
-        id: result.outBinds.id[0],
+        id: insertId,
         ...req.body,
       });
     } catch (error) {
@@ -70,16 +71,16 @@ export class BaseController {
     try {
       const id = req.params.id;
       const updates = Object.entries(req.body)
-        .map(([key]) => `${key} = :${key}`)
+        .map(([key]) => `${key} = ?`)
         .join(", ");
-      const params = { ...req.body, id };
+      const values = [...Object.values(req.body), id];
 
       const result = await executeQuery(
-        `UPDATE ${this.tableName} SET ${updates} WHERE ${this.idColumn} = :id`,
-        params
+        `UPDATE ${this.tableName} SET ${updates} WHERE ${this.idColumn} = ?`,
+        values
       );
 
-      if (result.rowsAffected === 0) {
+      if ((result as any).affectedRows === 0) {
         return res.status(404).json({ message: "Record not found" });
       }
 
@@ -95,11 +96,11 @@ export class BaseController {
     try {
       const id = req.params.id;
       const result = await executeQuery(
-        `DELETE FROM ${this.tableName} WHERE ${this.idColumn} = :id`,
-        { id }
+        `DELETE FROM ${this.tableName} WHERE ${this.idColumn} = ?`,
+        [id]
       );
 
-      if (result.rowsAffected === 0) {
+      if ((result as any).affectedRows === 0) {
         return res.status(404).json({ message: "Record not found" });
       }
 

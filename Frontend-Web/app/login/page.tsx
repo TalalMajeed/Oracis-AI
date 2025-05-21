@@ -16,10 +16,26 @@ import {
 } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Loader2 } from "lucide-react";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { authAPI } from "@/lib/api-client";
+import Link from "next/link";
+
+interface LoginResponse {
+  token: string;
+  user: {
+    id: string;
+    email: string;
+    name: string;
+    type: "candidate" | "employer";
+  };
+}
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [userType, setUserType] = useState<"candidate" | "employer">(
+    "candidate"
+  );
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuth();
@@ -31,21 +47,28 @@ export default function LoginPage() {
     setIsLoading(true);
 
     try {
-      await login(email, password);
+      const response = (await authAPI.login(
+        email,
+        password,
+        userType
+      )) as LoginResponse;
+      console.log("Login successful:", response);
+      login(response.token, response.user);
 
-      // Get user from local storage
-      const user = JSON.parse(localStorage.getItem("user") || "{}");
-
-      // Redirect based on user role
-      if (user.role === "candidate") {
+      // Redirect based on user type
+      console.log(
+        "Attempting to redirect to:",
+        response.user.type === "candidate"
+          ? "/dashboard/candidate"
+          : "/dashboard/employer"
+      );
+      if (response.user.type === "candidate") {
         router.push("/dashboard/candidate");
-      } else if (user.role === "employer") {
+      } else if (response.user.type === "employer") {
         router.push("/dashboard/employer");
-      } else {
-        // Fallback if role is not set or not recognized
-        router.push("/dashboard");
       }
     } catch (err) {
+      console.error("Login error:", err);
       setError("Invalid email or password");
     } finally {
       setIsLoading(false);
@@ -66,6 +89,25 @@ export default function LoginPage() {
                 <AlertDescription>{error}</AlertDescription>
               </Alert>
             )}
+            <div className="space-y-2">
+              <Label>Account Type</Label>
+              <RadioGroup
+                value={userType}
+                onValueChange={(value) =>
+                  setUserType(value as "candidate" | "employer")
+                }
+                className="flex space-x-4"
+              >
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="candidate" id="candidate" />
+                  <Label htmlFor="candidate">Candidate</Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="employer" id="employer" />
+                  <Label htmlFor="employer">Employer</Label>
+                </div>
+              </RadioGroup>
+            </div>
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
               <Input
@@ -89,7 +131,7 @@ export default function LoginPage() {
               />
             </div>
           </CardContent>
-          <CardFooter>
+          <CardFooter className="flex flex-col space-y-4">
             <Button type="submit" className="w-full" disabled={isLoading}>
               {isLoading ? (
                 <>
@@ -100,6 +142,12 @@ export default function LoginPage() {
                 "Sign In"
               )}
             </Button>
+            <div className="text-center text-sm text-muted-foreground">
+              Don't have an account?{" "}
+              <Link href="/register" className="text-primary hover:underline">
+                Register here
+              </Link>
+            </div>
           </CardFooter>
         </form>
       </Card>

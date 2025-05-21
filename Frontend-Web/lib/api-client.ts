@@ -20,10 +20,15 @@ apiClient.interceptors.request.use((config) => {
 
 // Auth API
 export const authAPI = {
-  login: async (email: string, password: string) => {
+  login: async (
+    email: string,
+    password: string,
+    userType: "candidate" | "employer"
+  ) => {
     const response = await apiClient.post("/api/auth/login", {
       email,
       password,
+      userType,
     });
     return response.data;
   },
@@ -35,6 +40,17 @@ export const authAPI = {
     phone: string;
   }) => {
     const response = await apiClient.post("/api/auth/register/candidate", data);
+    return response.data;
+  },
+  registerEmployer: async (data: {
+    company_name: string;
+    first_name: string;
+    last_name: string;
+    email: string;
+    password: string;
+    phone: string;
+  }) => {
+    const response = await apiClient.post("/api/auth/register/employer", data);
     return response.data;
   },
 };
