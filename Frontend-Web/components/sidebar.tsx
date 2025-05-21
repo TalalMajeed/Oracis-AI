@@ -70,19 +70,9 @@ export function SidebarWrapper({ children, userType }: SidebarWrapperProps) {
       icon: Search,
     },
     {
-      title: "My Profile",
-      href: "/dashboard/candidate/profile",
-      icon: User,
-    },
-    {
       title: "CV Builder",
       href: "/dashboard/candidate/cv-builder",
       icon: FileText,
-    },
-    {
-      title: "Messages",
-      href: "/dashboard/candidate/messages",
-      icon: MessageSquare,
     },
     {
       title: "Settings",
@@ -111,21 +101,6 @@ export function SidebarWrapper({ children, userType }: SidebarWrapperProps) {
       title: "Job Postings",
       href: "/dashboard/employer/jobs",
       icon: Briefcase,
-    },
-    {
-      title: "Analytics",
-      href: "/dashboard/employer/analytics",
-      icon: BarChart2,
-    },
-    {
-      title: "Team",
-      href: "/dashboard/employer/team",
-      icon: Users,
-    },
-    {
-      title: "Messages",
-      href: "/dashboard/employer/messages",
-      icon: MessageSquare,
     },
     {
       title: "Settings",
